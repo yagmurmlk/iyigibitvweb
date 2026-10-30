@@ -274,10 +274,10 @@
         <p class="post-meta">${postMeta(p)}${place ? `, ${esc(place.name)}, ${esc(place.countryName)}` : ""}</p>
       </header>
       <div class="wrap">
-        <button class="post-cover" data-play="${v.id}" aria-label="Videoyu oynat: ${esc(cleanTitle(v.title))}">
-          <img alt="" src="${src(v, "big")}"${fb(v, "big")}>
-          <span class="post-play">${I.play.replace("<svg", '<svg fill="currentColor"')}Videoyu izle, ${dur(v.sec)}</span>
-        </button>
+        <div class="post-player">
+          <iframe src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1" title="${esc(cleanTitle(v.title))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <p class="post-player-note">${esc(cleanTitle(v.title))}, ${dur(v.sec)}. <a href="${watchUrl(v)}" target="_blank" rel="noopener">YouTube'da izleyin</a></p>
       </div>
       <div class="wrap post-layout">
         <div class="prose">${body}</div>
