@@ -21,8 +21,7 @@
   const ROUTES = [
     ["anasayfa", "Ana Sayfa"],
     ["videolar", "Videolar"],
-    ["kesifler", "Keşifler"],
-    ["radyoloji", "Radyoloji & MR"],
+    ["kesifler", "Keşfettiğimiz Yerler"],
     ["hakkimizda", "Hakkımızda"],
     ["isbirligi", "İş Birliği"],
   ];
@@ -238,11 +237,15 @@
             <a class="btn btn-route" href="#videolar">${I.play.replace("<svg", '<svg fill="currentColor"')}Yolculuklara başla</a>
             <a class="btn btn-line" href="${CONFIG.youtube}?sub_confirmation=1" target="_blank" rel="noopener">${I.yt}Abone ol</a>
           </div>
+          <dl class="hero-stats">
+            <div><dt>abone</dt><dd>${num(D.channel.subscribers)}</dd></div>
+            <div><dt>izlenme</dt><dd>${compact(D.channel.views).replace(" milyon", " Mn")}</dd></div>
+            <div><dt>video</dt><dd>${num(D.channel.videoCount)}</dd></div>
+          </dl>
         </div>
         <figure class="hero-photo">
           <div class="frame"><img src="assets/img/birlikte-baku.jpg" alt="Hüseyin ve Melike Bakü'de el ele yürüyor"></div>
           <figcaption class="note">Bakü, 2024</figcaption>
-          <button class="latest" data-play="${latest.id}"><img alt="" src="${src(latest)}"><span><small>Yeni video</small><b>${esc(cleanTitle(latest.title))}</b></span></button>
         </figure>
       </div>
       <p class="places-line" aria-label="Gittiğimiz yerler, sırasıyla">${route.map((p, i) => `<span${i === route.length - 1 ? ' class="now"' : ""}>${esc(short(p.name))}</span>`).join("")}</p>
@@ -292,8 +295,8 @@
         ${stopHead("kameranın arkası", "İki kişi, tek rota")}
         <div class="us">
           <div class="us-photos">
-            <figure class="a" data-play="yuQKZdQADeE"><img loading="lazy" src="assets/img/birlikte-kar.jpg" alt="Hüseyin ve Melike karda, kardan adamın yanında"><figcaption>Bakü'ye kar yağdı</figcaption></figure>
-            <figure class="b" data-play="Wvp6fkVAUwQ"><img loading="lazy" src="assets/img/birlikte-kizilcahamam.jpg" alt="Hüseyin ve Melike Kızılcahamam'da"><figcaption>Kızılcahamam, 2026</figcaption></figure>
+            <figure class="a" data-play="yuQKZdQADeE"><img src="assets/img/birlikte-kar.jpg" alt="Hüseyin ve Melike karda, kardan adamın yanında"><figcaption>Bakü'ye kar yağdı</figcaption></figure>
+            <figure class="b" data-play="Wvp6fkVAUwQ"><img src="assets/img/birlikte-kizilcahamam.jpg" alt="Hüseyin ve Melike Kızılcahamam'da"><figcaption>Kızılcahamam, 2026</figcaption></figure>
           </div>
           <div class="us-text">
             <p class="lead" style="font-size:var(--t-md)">Hüseyin rotayı bulur, Melike o rotadaki en güzel sofrayı. Biri gezmeden duramaz, diğeri MR cihazlarını herkesin anlayacağı dille anlatır. Kanalı da, yolu da birlikte büyütüyoruz.</p>
@@ -359,6 +362,7 @@
       <div id="v-active"></div>
       <div class="grid" id="v-grid"></div>
       <div style="display:flex;justify-content:center;margin-top:36px"><button class="btn btn-line" id="v-more">Daha fazla göster</button></div>
+      ${radiologyCorner()}
     </section>`;
   }
   function filterVideos() {
@@ -423,7 +427,7 @@
     const groups = ["AZ", "TR", "GE"].map((c) => ({ c, places: placesUsed.filter((p) => p.country === c).sort((a, b) => b.count - a.count) })).filter((g) => g.places.length);
     return `
     <section class="wrap page-head">
-      <h1>Nereye gidelim?</h1>
+      <h1>Keşfettiğimiz yerler</h1>
       <p class="lead">${countries.length} ülkede ${placesUsed.length} yer gezdik. Haritada bir noktaya dokunun ya da aşağıda ülke ülke dolaşın.</p>
     </section>
     <section class="wrap">${mapBlock()}</section>
@@ -450,25 +454,27 @@
     ["Bilim tarihi", "MR'ı kim buldu? Tomografinin The Beatles ile ne ilgisi var?", ["US8TaXJ8ZLU", "rQrRP72A874"]],
     ["Meslek", "Radyoloji teknikerliği üzerine sorularınız ve yurt dışında çalışmak.", ["j5cqbBKCzJg", "mBT6HYNxPh8"]],
   ];
-  function pageRadiology() {
+  // Radyoloji köşesi: ayrı bir sayfa değil, Videolar sayfasının altında bir alan
+  function radiologyCorner() {
     const rv = V.filter((v) => v.topic === "radyoloji");
-    const hero = byId.mBT6HYNxPh8;
+    const lead = byId.mBT6HYNxPh8;
     return `
-    <section class="wrap page-head">
-      <div class="split">
-        <div style="display:grid;gap:18px;min-width:0">
-          <h1>Kameranın arkasında bir de önlük var</h1>
-          <p class="lead">Melike yıllardır radyoloji teknikeri. MR'ı, açık MR'ı ve MR güvenliğini en çok sorulan sorular üzerinden, herkesin anlayacağı bir dille anlatıyoruz. Bu konuda ${rv.length} video, ${compact(rv.reduce((s, v) => s + v.views, 0))} izlenme.</p>
+    <section class="corner" id="radyoloji-kosesi">
+      <div class="corner-head">
+        <div style="display:grid;gap:12px;min-width:0">
+          <span class="note">önlüğün arkasında</span>
+          <h2>Radyoloji köşesi</h2>
+          <p class="lead">Melike yıllardır radyoloji teknikeri. MR'ı, açık MR'ı ve MR güvenliğini en çok sorulan sorular üzerinden, herkesin anlayacağı bir dille anlatıyoruz. ${rv.length} video, ${compact(rv.reduce((s, v) => s + v.views, 0))} izlenme.</p>
         </div>
-        ${card(hero, { kind: "big" })}
+        <div class="corner-lead">${card(lead, { kind: "big" })}</div>
       </div>
-    </section>
-    <section class="wrap">
-      ${RADIO.map(([t, d, ids]) => `
-        <div class="topic">
-          <div><h2>${t}</h2><p>${d}</p></div>
-          <div class="grid">${ids.filter((id) => byId[id] && id !== hero.id).map((id) => card(byId[id])).join("")}</div>
-        </div>`).join("")}
+      <div class="corner-topics">
+        ${RADIO.map(([t, d, ids]) => `
+          <div class="corner-topic">
+            <h3>${t}</h3><p>${d}</p>
+            <ul>${ids.filter((id) => byId[id] && id !== lead.id).map((id) => `<li><button class="mini" data-play="${id}"><span class="mini-thumb"><img loading="lazy" alt="" src="${src(byId[id])}"></span><span><b>${esc(cleanTitle(byId[id].title))}</b><small>${byId[id].short ? "Kısa video" : dur(byId[id].sec)}, ${compact(byId[id].views)} izlenme</small></span></button></li>`).join("")}</ul>
+          </div>`).join("")}
+      </div>
       <p class="disclaimer">Bu videolar genel bilgilendirme amaçlıdır. Tanı, tedavi ve size özel durumlar için doktorunuza danışın.</p>
     </section>`;
   }
@@ -657,17 +663,19 @@
   dlg.addEventListener("close", () => (frame.innerHTML = ""));
 
   // ---- Yönlendirme ----
-  const PAGES = { anasayfa: pageHome, videolar: pageVideos, kesifler: pagePlaces, radyoloji: pageRadiology, hakkimizda: pageAbout, isbirligi: pageCollab };
+  const PAGES = { anasayfa: pageHome, videolar: pageVideos, kesifler: pagePlaces, hakkimizda: pageAbout, isbirligi: pageCollab };
   const BINDS = { anasayfa: bindHome, videolar: bindVideos, kesifler: bindMap, isbirligi: bindCollab };
   const TITLES = Object.fromEntries(ROUTES);
   const navHtml = () => ROUTES.map(([k, l]) => `<a href="#${k}" data-route="${k}">${l}</a>`).join("");
   document.getElementById("nav").innerHTML = navHtml();
-  document.getElementById("footer-nav").innerHTML = navHtml() + `<a href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">Instagram</a><a href="${CONFIG.youtube}" target="_blank" rel="noopener">YouTube</a>`;
+  document.getElementById("footer-nav").innerHTML = navHtml();
   document.getElementById("footer-data").textContent = `Kanal verileri YouTube'dan alınmıştır, ${date(D.channel.updated)}.`;
 
   let current = null;
   function render() {
-    const route = (location.hash || "#anasayfa").slice(1);
+    let route = (location.hash || "#anasayfa").slice(1);
+    const toCorner = route === "radyoloji";
+    if (toCorner) route = "videolar";
     const key = PAGES[route] ? route : "anasayfa";
     if (routeCleanup) { routeCleanup(); routeCleanup = null; }
     app.innerHTML = `<div class="page">${PAGES[key]()}</div>`;
@@ -676,7 +684,8 @@
     document.title = key === "anasayfa" ? "İyi Gibi TV" : `${TITLES[key]} | İyi Gibi TV`;
     document.getElementById("nav").classList.remove("open");
     document.getElementById("menu-btn").setAttribute("aria-expanded", "false");
-    if (current !== null) window.scrollTo(0, 0);
+    if (toCorner) requestAnimationFrame(() => document.getElementById("radyoloji-kosesi")?.scrollIntoView());
+    else if (current !== null) window.scrollTo(0, 0);
     current = key;
   }
 
