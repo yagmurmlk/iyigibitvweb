@@ -125,14 +125,6 @@
       skills: ["MR ve açık MR", "Bilim anlatımı", "Seslendirme", "Mutfak denemeleri"],
     },
   ];
-  function polaroid(p, { caption = true } = {}) {
-    return `<figure class="polaroid" style="--tilt:${p.tilt};margin:0">
-      <div class="pic">${p.initials}<img src="${p.photo}" alt="${esc(p.name)}" data-hide-on-error></div>
-      <span class="sticker">${esc(p.short)}</span>
-      ${caption ? `<figcaption>${esc(p.role)}</figcaption>` : ""}
-    </figure>`;
-  }
-
   // ---- Harita ----
   function px(lon, lat) { return [(lon - MAP.lon0) * MAP.cos * MAP.k, (MAP.latTop - lat) * MAP.k]; }
   const LABEL = { baku: "t", qobustan: "b", lenkeran: "l", seki: "t", goygol: "l", tiflis: "t", ayvalik: "r", ankara: "t", sakarya: "l", duzce: "r", kayseri: "r", deprem: "r" };
@@ -176,7 +168,7 @@
   function mapBlock() {
     return `<div class="map-card">
       <div class="map-scroll">${mapSvg()}</div>
-      <p class="map-hint">Kesik çizgi, bu yerlere gittiğimiz sırayı gösteriyor. Bir noktaya dokunun.</p>
+      <p class="map-hint">kesik çizgi, bu yerlere gidiş sıramız</p>
       <div class="map-panel" id="map-panel" aria-live="polite">${mapPanel()}</div>
     </div>`;
   }
@@ -187,161 +179,148 @@
     if (panel) panel.innerHTML = mapPanel();
   }
 
-  // ---- TV ----
-  let tvId = longs[0].id;
-  let noiseUrl = "";
-  function noise() {
-    if (noiseUrl) return noiseUrl;
-    try {
-      const c = document.createElement("canvas"); c.width = c.height = 160;
-      const g = c.getContext("2d"), img = g.createImageData(160, 160);
-      for (let i = 0; i < img.data.length; i += 4) { const n = Math.random() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = n; img.data[i + 3] = 255; }
-      g.putImageData(img, 0, 0); noiseUrl = c.toDataURL();
-    } catch (_) { noiseUrl = ""; }
-    return noiseUrl;
-  }
-  function tvCaption(v) {
-    return `<div><b>${esc(cleanTitle(v.title))}</b><span>${esc(where(v))}. ${meta(v)}</span></div>
-      <button class="btn btn-red" data-play="${v.id}">${I.play.replace("<svg", '<svg fill="currentColor"')}İzle</button>`;
-  }
-  function tvBlock() {
-    const v = byId[tvId];
-    return `<div class="tv-wrap">
-      <div class="tv">
-        <button class="tv-screen on" id="tv-screen" data-play="${v.id}" aria-label="Videoyu oynat: ${esc(cleanTitle(v.title))}" style="border:0;padding:0;cursor:pointer">
-          <img id="tv-img" alt="" src="${src(v, "big")}"${fb(v, "big")}>
-          <span class="static" style="background-image:url(${noise()})"></span>
-          <span class="play-big">${I.play}</span>
-        </button>
-        <div class="tv-panel">
-          <div class="tv-channel" aria-live="polite"><small>kanal</small><span id="tv-no">${String(channelNo(v.id)).padStart(3, "0")}</span></div>
-          <button class="knob" id="tv-knob" aria-label="Kanal değiştir"></button>
-          <span class="knob small" aria-hidden="true"></span>
-          <span class="tv-speaker" aria-hidden="true">${"<span></span>".repeat(9)}</span>
-        </div>
-      </div>
-      <div class="tv-caption" id="tv-caption">${tvCaption(v)}</div>
-    </div>`;
-  }
-  function switchChannel() {
-    const pool = longs.filter((v) => v.id !== tvId && v.place);
-    const v = pool[Math.floor(Math.random() * pool.length)];
-    tvId = v.id;
-    const screen = document.getElementById("tv-screen");
-    if (!screen) return;
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const apply = () => {
-      const img = document.getElementById("tv-img");
-      if (!THUMB_BASE) img.dataset.fallback = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
-      img.src = src(v, "big");
-      screen.dataset.play = v.id;
-      screen.setAttribute("aria-label", "Videoyu oynat: " + cleanTitle(v.title));
-      document.getElementById("tv-no").textContent = String(channelNo(v.id)).padStart(3, "0");
-      document.getElementById("tv-caption").innerHTML = tvCaption(v);
-      screen.classList.remove("switching");
+  // ---- Rota çizgisi: ana sayfada durakları birbirine bağlar, kaydırdıkça çizilir ----
+  let routeCleanup = null;
+  function drawRoute() {
+    if (routeCleanup) { routeCleanup(); routeCleanup = null; }
+    const j = document.querySelector(".journey");
+    if (!j) return;
+    const svg = j.querySelector(".route-svg");
+    const main = svg.querySelector(".main"), ghost = svg.querySelector(".ghost");
+    let len = 0;
+    const layout = () => {
+      const jr = j.getBoundingClientRect();
+      const pts = [...j.querySelectorAll(".stop-dot")].map((d) => { const r = d.getBoundingClientRect(); return [r.left - jr.left + r.width / 2, r.top - jr.top + r.height / 2]; });
+      if (pts.length < 2) return;
+      svg.setAttribute("viewBox", `0 0 ${jr.width} ${jr.height}`);
+      let d = `M${pts[0][0]},${pts[0][1] - 60} L${pts[0][0]},${pts[0][1]}`;
+      for (let i = 1; i < pts.length; i++) {
+        const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], s = i % 2 ? 1 : -1, w = Math.min(26, x0 - 4);
+        d += ` C${x0 + s * w},${y0 + (y1 - y0) * 0.35} ${x1 - s * w},${y0 + (y1 - y0) * 0.65} ${x1},${y1}`;
+      }
+      main.setAttribute("d", d); ghost.setAttribute("d", d);
+      len = main.getTotalLength();
+      main.style.strokeDasharray = `${len} ${len}`;
+      progress();
     };
-    if (reduce) return apply();
-    screen.classList.add("switching");
-    setTimeout(apply, 320);
+    const progress = () => {
+      if (!len) return;
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const r = j.getBoundingClientRect();
+      const f = reduce ? 1 : Math.min(1, Math.max(0, (innerHeight * 0.7 - r.top) / r.height));
+      main.style.strokeDashoffset = String(len * (1 - f));
+    };
+    const ro = new ResizeObserver(layout);
+    ro.observe(j);
+    addEventListener("scroll", progress, { passive: true });
+    layout();
+    routeCleanup = () => { ro.disconnect(); removeEventListener("scroll", progress); };
   }
 
   // ---- Sayfalar ----
+  const stopHead = (note, title, text) => `<div class="stop-head"><span class="stop-dot" aria-hidden="true"></span><span class="note">${note}</span><h2>${title}</h2>${text ? `<p class="lead">${text}</p>` : ""}</div>`;
+
   function pageHome() {
-    const top = [...longs].sort(byViews).slice(0, 5);
-    const latest = V.slice(0, 8);
+    const latest = longs[0];
+    const top = [...longs].sort(byViews).slice(0, 6);
     const topShorts = [...shorts].sort(byViews).slice(0, 12);
-    const wallVids = longs.slice(0, 44);
-    const rowA = wallVids.filter((_, i) => i % 2 === 0), rowB = wallVids.filter((_, i) => i % 2 === 1);
-    const wallRow = (list, rev) => `<div class="wall-row${rev ? " rev" : ""}">${[...list, ...list].map((v, i) => `<button data-play="${v.id}" ${i >= list.length ? 'tabindex="-1" aria-hidden="true"' : `aria-label="${esc(cleanTitle(v.title))}"`}><img loading="lazy" alt="" src="${src(v)}"></button>`).join("")}</div>`;
-    const why = (id, tilt, h, t, link) => {
-      const v = byId[id];
-      return `<article>
-        <button class="photo-tilt" style="--tilt:${tilt}" data-play="${id}" aria-label="${esc(cleanTitle(v.title))}"><img loading="lazy" alt="" src="${src(v)}"></button>
-        <h3>${h}</h3><p>${t}</p>
-        <button class="card-link" data-play="${id}">${link}</button>
-      </article>`;
-    };
+    const route = [...placesUsed].sort((a, b) => a.first.localeCompare(b.first));
+    const short = (n) => n.replace(" & çevresi", "").replace(" & kamp rotaları", "").replace(" & Cunda", "").replace(" & Hatay", "").replace(" → Antalya", "");
+    const why = (id, tilt, h, t) => `<article><h3>${h}</h3><p>${t}</p>
+      <button class="peek" style="--tilt:${tilt}" data-play="${id}" aria-label="Örnek video: ${esc(cleanTitle(byId[id].title))}"><img loading="lazy" alt="" src="${src(byId[id])}"></button></article>`;
     return `
-    <section class="hero">
-      <div class="wrap hero-grid">
+    <section class="hero wrap">
+      <div class="hero-grid">
         <div class="hero-copy">
           <h1>Güzel değil belki, ama iyi gibi.</h1>
-          <p class="lead">Biz Hüseyin ve Melike. Bakü'nün pazarlarından Anadolu'nun köylerine kadar gittiğimiz her yeri kameramızla birlikte keşfediyoruz. Siz de kanalı çevirin, bakalım bugün nereye gidiyoruz.</p>
+          <p class="lead">Biz Hüseyin ve Melike. Bakü'nün pazarlarından Anadolu'nun köylerine kadar gittiğimiz her yeri birlikte keşfediyor, kameramızla size getiriyoruz.</p>
           <div class="hero-actions">
-            <button class="btn btn-sun" id="tv-random">${I.dice}Rastgele bir yer keşfet</button>
-            <a class="btn" href="${CONFIG.youtube}?sub_confirmation=1" target="_blank" rel="noopener">${I.yt}Abone ol</a>
+            <a class="btn btn-route" href="#videolar">${I.play.replace("<svg", '<svg fill="currentColor"')}Yolculuklara başla</a>
+            <a class="btn btn-line" href="${CONFIG.youtube}?sub_confirmation=1" target="_blank" rel="noopener">${I.yt}Abone ol</a>
           </div>
-          <p class="hero-note">${num(D.channel.subscribers)} abone, ${compact(D.channel.views)} izlenme, ${num(D.channel.videoCount)} video</p>
         </div>
-        ${tvBlock()}
+        <figure class="hero-photo">
+          <div class="frame"><img src="assets/img/birlikte-baku.jpg" alt="Hüseyin ve Melike Bakü'de el ele yürüyor"></div>
+          <figcaption class="note">Bakü, 2024</figcaption>
+          <button class="latest" data-play="${latest.id}"><img alt="" src="${src(latest)}"><span><small>Yeni video</small><b>${esc(cleanTitle(latest.title))}</b></span></button>
+        </figure>
       </div>
+      <p class="places-line" aria-label="Gittiğimiz yerler, sırasıyla">${route.map((p, i) => `<span${i === route.length - 1 ? ' class="now"' : ""}>${esc(short(p.name))}</span>`).join("")}</p>
     </section>
 
-    <section class="wall" aria-label="Kanaldaki videolar">${wallRow(rowA)}${wallRow(rowB, true)}</section>
-    <p class="wall-caption wrap"><b>${num(D.channel.videoCount)} video, ${placesUsed.length} yer, ${countries.length} ülke.</b> Birine dokunun, oradan başlayın.</p>
+    <div class="journey">
+      <svg class="route-svg" aria-hidden="true"><path class="ghost"/><path class="main"/></svg>
 
-    <section class="block wrap">
-      <div class="head"><div><h2>Haritada iyi gibi</h2><p>Ayvalık'tan Lənkəran'a kadar gittiğimiz her yer haritada bir nokta. Hangisi daha çok ilginizi çekiyor?</p></div>
-        <a class="more" href="#kesifler">Bütün yolculuklar</a></div>
-      ${mapBlock()}
-    </section>
-
-    <section class="block wrap">
-      <div class="head"><div><h2>En çok izlenenler</h2><p>Sizin en çok izlediğiniz yolculuklar. Çoğu, bir ülkeyi pazar tezgâhından tanımaya çalıştığımız günler.</p></div>
-        <a class="more" href="#videolar" data-sort="views">Hepsini sırala</a></div>
-      <div class="feature-grid">${top.map((v, i) => card(v, { kind: i === 0 ? "big" : "card", pin: true })).join("")}</div>
-    </section>
-
-    <section class="block wrap">
-      <div class="head"><div><h2>Neden birlikte keşfediyoruz?</h2><p>Bir yeri gerçekten tanımak için üç kuralımız var.</p></div></div>
-      <div class="why">
-        ${why("mV9hZFSvZtc", "-2deg", "Yerinde görmek", "Bir ülkenin hayat pahalılığını haberlerden değil, pazar tezgâhından öğreniyoruz. Fiyatı soruyor, ürünü elimize alıyor, satıcıyla sohbet ediyoruz.", "Azerbaycan'da hayat pahalı mı?")}
-        ${why("PRAJ84uGhDU", "1.5deg", "Merakla sormak", "Yolda aklımıza takılan soruları saklamıyoruz. Cevabı birlikte arıyoruz; bazen bir müzede, bazen bir bilgi yarışmasında, bazen gece yürüyüşünde.", "Bakü'de akşam yürüyüşü")}
-        ${why("Wvp6fkVAUwQ", "-1deg", "Sofrada buluşmak", "Bir yolculuğun en güzel anı çoğu zaman plansız olanıdır: bir bazlama, bir tereyağı ve hiç tanımadığımız amcalarla edilen bir sohbet.", "Kızılcahamam'da bir gün")}
-      </div>
-    </section>
-
-    <section class="block wrap">
-      <div class="head"><div><h2>Kanalda yeni</h2><p>Son yüklediklerimiz.</p></div><a class="more" href="#videolar">Tüm videolar</a></div>
-      <div class="grid">${latest.map((v) => card(v)).join("")}</div>
-    </section>
-
-    <section class="block wrap">
-      <div class="head"><div><h2>Bir dakikadan kısa</h2><p>Yoldan kalan küçük anlar.</p></div><a class="more" href="#videolar" data-format="short">Tüm Shorts videoları</a></div>
-      <div class="strip">${topShorts.map((v) => card(v)).join("")}</div>
-    </section>
-
-    <section class="block wrap">
-      <div class="band">
-        <div style="display:grid;gap:18px;min-width:0">
-          <h2>Markanızı birlikte keşfedelim</h2>
-          <p class="lead">Bir mekânı, ürünü ya da etkinliği izleyicimize kendi gözümüzden anlatıyoruz. Reklam gibi değil, yol arkadaşının tavsiyesi gibi.</p>
-          <a class="btn" href="#isbirligi" style="justify-self:start">İş birliği için yazın</a>
+      <section class="stop wrap">
+        ${stopHead("en son buradaydık", "Son yolculuk")}
+        <div class="feature">
+          ${card(latest, { kind: "big" }).replace('<span class="card-title">', '<span class="card-title" hidden>').replace('<span class="card-meta">', '<span class="card-meta" hidden>')}
+          <div class="feature-text">
+            <h3>${esc(cleanTitle(latest.title))}</h3>
+            <p>${esc(latest.desc)}</p>
+            <span class="feature-meta">${esc(where(latest))}. ${meta(latest)}, ${dur(latest.sec)}</span>
+            <button class="btn btn-ink" data-play="${latest.id}" style="justify-self:start">${I.play.replace("<svg", '<svg fill="currentColor"')}Videoyu izle</button>
+          </div>
         </div>
-        <ul class="band-nums">
-          <li><b>${compact([...longs].sort(byViews)[0].views)}</b><span>en çok izlenen videomuzun izlenmesi</span></li>
-          <li><b>${compact(longAvg)}</b><span>uzun videolarda ortalama izlenme</span></li>
-          <li><b>3 dil</b><span>Türkçe, Azerbaycan Türkçesi ve Rusça açıklamalar</span></li>
-        </ul>
-      </div>
-    </section>
+      </section>
 
-    <section class="block wrap">
-      <div class="duo">
-        <div class="polaroids">${PEOPLE.map((p) => polaroid(p)).join("")}</div>
-        <div style="display:grid;gap:18px;min-width:0">
-          <h2>Kameranın arkasında biz varız</h2>
-          <p class="lead">Hüseyin rotayı bulur, Melike o rotadaki en güzel sofrayı. Biri gezmeden duramaz, diğeri MR cihazlarını herkesin anlayacağı dille anlatır. Gerisini birlikte keşfederiz.</p>
-          <a class="more" href="#hakkimizda" style="justify-self:start">Bizi tanıyın</a>
+      <section class="stop wrap">
+        <div class="stop-row">${stopHead("hangisi sizi çağırıyor?", "Haritada iyi gibi", `${countries.length} ülke, ${placesUsed.length} durak. Bir noktaya dokunun, o yolculuğun videoları açılsın.`)}<a class="more" href="#kesifler">Bütün yolculuklar</a></div>
+        ${mapBlock()}
+      </section>
+
+      <section class="stop wrap">
+        <div class="stop-row">${stopHead("en çok bunları sevdiniz", "En çok izlenenler", "Çoğu, bir ülkeyi pazar tezgâhından tanımaya çalıştığımız günler.")}<a class="more" href="#videolar" data-sort="views">Hepsini sırala</a></div>
+        <ol class="ranked" style="margin:0;padding:8px 4px 18px">${top.map((v, i) => `<li><span class="rank" aria-hidden="true">${i + 1}</span>${card(v)}</li>`).join("")}</ol>
+      </section>
+
+      <section class="stop wrap">
+        ${stopHead("bizim üç kuralımız", "Neden birlikte keşfediyoruz?")}
+        <div class="why">
+          ${why("mV9hZFSvZtc", "3deg", "Yerinde görmek", "Bir ülkenin hayat pahalılığını haberlerden değil, pazar tezgâhından öğreniyoruz. Fiyatı soruyor, ürünü elimize alıyor, satıcıyla sohbet ediyoruz.")}
+          ${why("PRAJ84uGhDU", "-3deg", "Merakla sormak", "Yolda aklımıza takılan soruları saklamıyoruz. Cevabı birlikte arıyoruz; bazen bir müzede, bazen bir bilgi yarışmasında, bazen gece yürüyüşünde.")}
+          ${why("Wvp6fkVAUwQ", "2deg", "Sofrada buluşmak", "Bir yolculuğun en güzel anı çoğu zaman plansız olanıdır: bir bazlama, bir tereyağı ve hiç tanımadığımız amcalarla edilen bir sohbet.")}
         </div>
-      </div>
-    </section>`;
+      </section>
+
+      <section class="stop wrap">
+        <div class="stop-row">${stopHead("yoldan kalanlar", "Bir dakikadan kısa")}<a class="more" href="#videolar" data-format="short">Tüm kısa videolar</a></div>
+        <div class="strip">${topShorts.map((v) => card(v)).join("")}</div>
+      </section>
+
+      <section class="stop wrap">
+        ${stopHead("kameranın arkası", "İki kişi, tek rota")}
+        <div class="us">
+          <div class="us-photos">
+            <figure class="a" data-play="yuQKZdQADeE"><img loading="lazy" src="assets/img/birlikte-kar.jpg" alt="Hüseyin ve Melike karda, kardan adamın yanında"><figcaption>Bakü'ye kar yağdı</figcaption></figure>
+            <figure class="b" data-play="Wvp6fkVAUwQ"><img loading="lazy" src="assets/img/birlikte-kizilcahamam.jpg" alt="Hüseyin ve Melike Kızılcahamam'da"><figcaption>Kızılcahamam, 2026</figcaption></figure>
+          </div>
+          <div class="us-text">
+            <p class="lead" style="font-size:var(--t-md)">Hüseyin rotayı bulur, Melike o rotadaki en güzel sofrayı. Biri gezmeden duramaz, diğeri MR cihazlarını herkesin anlayacağı dille anlatır. Kanalı da, yolu da birlikte büyütüyoruz.</p>
+            <a class="btn btn-line" href="#hakkimizda" style="justify-self:start">Hikâyemizi okuyun</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="stop wrap">
+        <div class="band">
+          <div style="display:grid;gap:18px;min-width:0">
+            <span class="stop-dot" aria-hidden="true" style="position:absolute;opacity:0"></span>
+            <span class="note">markalar için</span>
+            <h2>Markanızı birlikte keşfedelim</h2>
+            <p class="lead">Bir mekânı, ürünü ya da etkinliği izleyicimize kendi gözümüzden anlatıyoruz. Reklam gibi değil, yol arkadaşının tavsiyesi gibi.</p>
+            <a class="btn btn-route" href="#isbirligi">İş birliği için yazın</a>
+          </div>
+          <ul class="band-nums">
+            <li><b>${num(D.channel.subscribers)}</b><span>abone</span></li>
+            <li><b>${compact(D.channel.views).replace(" milyon", " Mn")}</b><span>toplam izlenme</span></li>
+            <li><b>${compact([...longs].sort(byViews)[0].views)}</b><span>en çok izlenen videomuz</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>`;
   }
-  function bindHome() {
-    document.getElementById("tv-knob").addEventListener("click", switchChannel);
-    document.getElementById("tv-random").addEventListener("click", switchChannel);
-    bindMap();
-  }
+  function bindHome() { bindMap(); drawRoute(); }
   function bindMap() {
     app.querySelectorAll("[data-pin]").forEach((g) => {
       g.addEventListener("click", () => selectPin(g.dataset.pin));
@@ -379,7 +358,7 @@
       </div>
       <div id="v-active"></div>
       <div class="grid" id="v-grid"></div>
-      <div style="display:flex;justify-content:center;margin-top:36px"><button class="btn" id="v-more">Daha fazla göster</button></div>
+      <div style="display:flex;justify-content:center;margin-top:36px"><button class="btn btn-line" id="v-more">Daha fazla göster</button></div>
     </section>`;
   }
   function filterVideos() {
@@ -414,7 +393,7 @@
     if (vstate.place) act.push(placeOf(vstate.place).name);
     if (vstate.playlist) act.push(titleCase(D.playlists.find((p) => p.id === vstate.playlist).title));
     document.getElementById("v-active").innerHTML = act.length
-      ? `<div class="active-filters">${act.map((a) => `<span class="sticker">${esc(a)}</span>`).join("")}<button class="chip-btn" id="v-clear">Filtreyi kaldır</button></div>` : "";
+      ? `<div class="active-filters">${act.map((a) => `<span class="tag">${esc(a)}</span>`).join("")}<button class="chip-btn" id="v-clear">Filtreyi kaldır</button></div>` : "";
     document.querySelectorAll("[data-playlist]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.playlist === vstate.playlist)));
     document.querySelectorAll("[data-topic]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.topic === vstate.topic)));
   }
@@ -490,7 +469,7 @@
           <div><h2>${t}</h2><p>${d}</p></div>
           <div class="grid">${ids.filter((id) => byId[id] && id !== hero.id).map((id) => card(byId[id])).join("")}</div>
         </div>`).join("")}
-      <p class="note">Bu videolar genel bilgilendirme amaçlıdır. Tanı, tedavi ve size özel durumlar için doktorunuza danışın.</p>
+      <p class="disclaimer">Bu videolar genel bilgilendirme amaçlıdır. Tanı, tedavi ve size özel durumlar için doktorunuza danışın.</p>
     </section>`;
   }
 
@@ -505,31 +484,68 @@
     ["Ocak 2026", "Ankara'ya döndük. Daha gerçek, daha sakin, daha biz videolarla yeniden buradayız."],
     ["2026", "Beypazarı, Hendek'te bir köy, Kayseri'den Antalya'ya bir yol. Türkiye rotaları yeni başlıyor."],
   ];
+  // İki kişi, tek hikâye: her satırda ikimiz yan yana
+  const DUET = [
+    ["yolda", "Rotayı o bulur. Haritayı açar, köy yollarına sapar, karşısına çıkan herkesle sohbete dalar.", "Sofrayı o bulur. Hangi pazarda ne yenir, hangi tezgâhta ne pişer, ilk o fark eder."],
+    ["kanala kattığı", "Yolun hikâyesini: Kayseri'den Antalya'ya, Bakü'den Göygöl'e uzanan yolculukları.", "Kanalın ilk videolarını ve radyoloji köşesini. MR'ı herkesin anlayacağı dille anlatan o."],
+    ["sözü", "<q>Hayat, keşfetmenin başka bir yolu.</q>", "<q>Buklelerinizi özgür bırakın!</q>"],
+  ];
+  const ALBUM = [
+    ["p1", "assets/img/birlikte-kar.jpg", "Bakü'ye kar yağdı, Ocak 2024", "yuQKZdQADeE", "Hüseyin ve Melike karda"],
+    ["p2", "assets/img/birlikte-baku.jpg", "Bakü'de turist gibi, Nisan 2024", "QNPH1XS7bCM", "Hüseyin ve Melike Bakü'de yürüyor"],
+    ["p3", "assets/img/birlikte-kizilcahamam.jpg", "Kızılcahamam, Ocak 2026", "Wvp6fkVAUwQ", "Hüseyin ve Melike Kızılcahamam'da"],
+    ["p4", "assets/img/birlikte-nevruz.jpg", "Bakü'de Nevruz, Mart 2024", "8BHEpNX4omo", "Hüseyin ve Melike Nevruz kutlamasında"],
+  ];
+  const SKILLS = ["Rota planlama", "Yerinde röportaj", "Çekim ve anlatım", "MR ve sağlık anlatımı", "Seslendirme", "Mutfak denemeleri", "Kamp", "Türkçe, Azerbaycan Türkçesi ve Rusça içerik"];
+
   function pageAbout() {
+    const [H, M] = PEOPLE;
     return `
-    <section class="wrap page-head">
-      <h1>İki kişi, bir kamera, bitmeyen bir merak</h1>
+    <section class="wrap about-hero">
+      <div class="copy">
+        <span class="note">biz</span>
+        <h1>Biri rotayı bulur, diğeri sofrayı.</h1>
+        <p class="lead">Biz Hüseyin ve Melike. İyi Gibi TV'yi birlikte büyütüyoruz. Bakü'nün pazarlarından Anadolu'nun köylerine kadar gittiğimiz her yeri birlikte keşfediyor, birlikte anlatıyoruz. Bize göre bir yeri gerçekten tanımanın yolu, onu iki kişi yaşamak ve sizinle paylaşmak.</p>
+      </div>
+      <figure>
+        <div class="frame"><img src="assets/img/birlikte-baku.jpg" alt="Hüseyin ve Melike Bakü'de el ele yürüyor"></div>
+        <figcaption class="note">el ele, Bakü</figcaption>
+      </figure>
     </section>
+
     <section class="wrap">
-      ${PEOPLE.map((p) => `
-        <article class="bio" id="${p.id}">
-          ${polaroid(p, { caption: false })}
-          <div class="bio-text">
-            <h2>${esc(p.name)}</h2>
-            <span class="role">${esc(p.role)}</span>
-            ${p.text.map((t) => `<p>${esc(t)}</p>`).join("")}
-            <ul class="chips" aria-label="${esc(p.short)} neler yapıyor">${p.skills.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
-          </div>
-        </article>`).join("")}
+      <div class="duet">
+        <div class="who h"><span><b>${esc(H.name)}</b><span>36 yaşında, yol arkadaşı</span></span><img src="${H.photo}" alt="${esc(H.name)}" data-hide-on-error></div>
+        <div class="knot" aria-hidden="true"><span></span></div>
+        <div class="who m"><img src="${M.photo}" alt="${esc(M.name)}" data-hide-on-error><span><b>${esc(M.name)}</b><span>Radyoloji teknikeri</span></span></div>
+        ${DUET.map(([label, h, m]) => `
+          <div class="row-label"><span>${label}</span></div>
+          <div class="cell h"><p>${h}</p></div><div></div><div class="cell m"><p>${m}</p></div>`).join("")}
+        <div class="together"><p>İkimiz birlikte: güzel değil belki, ama iyi gibi.</p></div>
+      </div>
     </section>
-    <section class="block wrap">
-      <div class="head"><div><h2>Hikâyemiz</h2><p>2013'ten bugüne kanalın yolculuğu.</p></div></div>
+
+    <section class="wrap section">
+      <div class="section-head"><div><span class="note">birlikte biriktirdiklerimiz</span><h2>Yoldan birkaç kare</h2><p>Fotoğrafa dokunun, o günün videosu açılsın.</p></div></div>
+      <div class="album">${ALBUM.map(([c, img, cap, id, alt]) => `<figure class="${c}" data-play="${id}" role="button" tabindex="0" aria-label="${esc(cap)} videosunu oynat"><img loading="lazy" src="${img}" alt="${esc(alt)}"><figcaption>${esc(cap)}</figcaption></figure>`).join("")}</div>
+    </section>
+
+    <section class="wrap section">
+      <div class="duo">
+        <div class="section-head" style="margin:0"><div><span class="note">ortak çantamız</span><h2>Birlikte neler yapıyoruz</h2><p>Bir videonun arkasında ikimizin de yetenekleri var. Bunları markalar ve projeler için de kullanıyoruz.</p></div></div>
+        <ul class="skills">${SKILLS.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="section-head"><div><span class="note">2013'ten bugüne</span><h2>Hikâyemiz</h2></div></div>
       <ol class="timeline">${STORY.map(([d, t]) => `<li><b>${d}</b><p>${esc(t)}</p></li>`).join("")}</ol>
     </section>
-    <section class="block wrap">
+
+    <section class="wrap section">
       <div class="band">
-        <div style="display:grid;gap:16px;min-width:0"><h2>Bir sonraki durağı birlikte seçelim</h2><p class="lead">Gitmemizi istediğiniz bir yer ya da birlikte anlatmak istediğiniz bir hikâye varsa yazın.</p></div>
-        <div style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="#isbirligi">Bize yazın</a><a class="btn" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">Instagram'da takip edin</a></div>
+        <div style="display:grid;gap:16px;min-width:0"><span class="note">sıradaki durak</span><h2>Bir sonraki yeri birlikte seçelim</h2><p class="lead">Gitmemizi istediğiniz bir yer ya da birlikte anlatmak istediğiniz bir hikâye varsa yazın.</p></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-route" href="#isbirligi">Bize yazın</a><a class="btn btn-line" style="color:inherit" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">Instagram'da takip edin</a></div>
       </div>
     </section>`;
   }
@@ -555,19 +571,19 @@
         <div><b>${compact(longAvg)}</b><span>uzun videolarda ortalama izlenme</span></div>
         <div><b>${compact(totalLikes + totalComments)}</b><span>beğeni ve yorum</span></div>
       </div>
-      <p class="hero-note" style="margin-top:10px">YouTube verileri, ${date(D.channel.updated)}.</p>
+      <p class="feature-meta" style="margin-top:10px;display:block">YouTube verileri, ${date(D.channel.updated)}.</p>
     </section>
-    <section class="block wrap">
-      <div class="head"><div><h2>Neler yapabiliriz</h2><p>Her birinin altında kanaldan bir örnek var.</p></div></div>
+    <section class="section wrap">
+      <div class="section-head"><div><h2>Neler yapabiliriz</h2><p>Her birinin altında kanaldan bir örnek var.</p></div></div>
       <div class="offers">
         ${OFFERS.map(([t, d, ids]) => `<article class="offer"><h3>${t}</h3><p>${d}</p><div class="examples">${ids.filter((id) => byId[id]).map((id) => card(byId[id])).join("")}</div></article>`).join("")}
       </div>
     </section>
-    <section class="block wrap">
-      <div class="head"><div><h2>Kanalımızda yer alanlar</h2><p>Bugüne kadar gezip anlattığımız mekânlar ve etkinlikler.</p></div></div>
+    <section class="section wrap">
+      <div class="section-head"><div><h2>Kanalımızda yer alanlar</h2><p>Bugüne kadar gezip anlattığımız mekânlar ve etkinlikler.</p></div></div>
       <ul class="tags">${FEATURED_PLACES.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
     </section>
-    <section class="block wrap" id="iletisim">
+    <section class="section wrap" id="iletisim">
       <div class="duo" style="align-items:start">
         <div class="contact">
           <h2>Bize yazın</h2>
@@ -589,12 +605,12 @@
           </div>
           <label for="f-msg">Mesajınız<textarea id="f-msg" name="msg" required placeholder="Markanızdan ve aklınızdaki fikirden kısaca bahsedin."></textarea></label>
           <p id="f-error" style="color:var(--tomato);font-weight:600" hidden>Adınızı, e-postanızı ve mesajınızı yazın.</p>
-          <button class="btn btn-sun" type="submit" style="justify-self:start">Mesajı hazırla</button>
+          <button class="btn btn-route" type="submit" style="justify-self:start">Mesajı hazırla</button>
           <div class="form-out" id="f-out" hidden>
             <pre id="f-text"></pre>
             <div style="display:flex;gap:12px;flex-wrap:wrap">
-              <button class="btn" type="button" id="f-copy">Metni kopyala</button>
-              ${CONFIG.email ? `<a class="btn btn-red" id="f-mailto" href="#">E-postayla gönder</a>` : `<a class="btn btn-red" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">Instagram'dan gönder</a>`}
+              <button class="btn btn-line" type="button" id="f-copy">Metni kopyala</button>
+              ${CONFIG.email ? `<a class="btn btn-route" id="f-mailto" href="#">E-postayla gönder</a>` : `<a class="btn btn-route" href="https://instagram.com/${CONFIG.instagram}" target="_blank" rel="noopener">Instagram'dan gönder</a>`}
             </div>
           </div>
         </form>
@@ -653,6 +669,7 @@
   function render() {
     const route = (location.hash || "#anasayfa").slice(1);
     const key = PAGES[route] ? route : "anasayfa";
+    if (routeCleanup) { routeCleanup(); routeCleanup = null; }
     app.innerHTML = `<div class="page">${PAGES[key]()}</div>`;
     (BINDS[key] || (() => {}))();
     document.querySelectorAll("[data-route]").forEach((a) => (a.dataset.route === key ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
@@ -687,6 +704,7 @@
     if (img instanceof HTMLImageElement && img.dataset.fallback && img.naturalWidth <= 120) { const f = img.dataset.fallback; delete img.dataset.fallback; img.src = f; }
   }, true);
 
+  document.addEventListener("keydown", (e) => { const f = e.target.closest && e.target.closest("figure[data-play]"); if (f && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); play(f.dataset.play); } });
   document.getElementById("menu-btn").addEventListener("click", (e) => {
     const open = document.getElementById("nav").classList.toggle("open");
     e.currentTarget.setAttribute("aria-expanded", String(open));

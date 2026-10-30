@@ -114,7 +114,11 @@ def main():
         if topic in ("radyoloji", "gunluk") and v["id"] not in PLACE_OVERRIDE:
             place = None
         country = next((p[2] for p in PLACES if p[0] == place), None)
-        desc = re.split(r"\n\s*\n|#", v["description"].strip())[0].strip()
+        # Açıklamanın başlığı tekrar etmeyen ilk paragrafı
+        chunks = [c.strip() for c in re.split(r"\n\s*\n|#", v["description"].strip()) if c.strip()]
+        norm = lambda x: re.sub(r"\W+", "", x.lower())
+        chunks = [c for c in chunks if norm(c) != norm(v["title"]) and not norm(v["title"]).startswith(norm(c))] or chunks or [""]
+        desc = chunks[0]
         videos.append({
             "id": v["id"],
             "title": v["title"].strip(),

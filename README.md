@@ -5,11 +5,11 @@
 ## Sayfalar
 | Sekme | Adres | İçerik |
 |---|---|---|
-| Ana Sayfa | `#anasayfa` | Kanal değiştiren TV, kapak duvarı, keşif haritası, en çok izlenenler, "Neden birlikte keşfediyoruz?", Shorts, iş birliği çağrısı |
+| Ana Sayfa | `#anasayfa` | Durakları birbirine bağlayan, kaydırdıkça çizilen rota çizgisi: son yolculuk, keşif haritası, en çok izlenenler, üç kural, kısa videolar, biz, iş birliği |
 | Videolar | `#videolar` | 141 video: arama, konu/format filtresi, seriler, sıralama |
 | Keşifler | `#kesifler` | Gerçek harita üzerinde gidilen yerler, ülke ve yer bazında videolar |
 | Radyoloji & MR | `#radyoloji` | Açık MR, MR güvenliği, bilim tarihi, meslek |
-| Hakkımızda | `#hakkimizda` | Hüseyin ve Melike'nin tanıtımları, kanalın hikâyesi |
+| Hakkımızda | `#hakkimizda` | İkisini birlikte anlatan sayfa: ortak giriş, yan yana iki ses, birlikte fotoğraf albümü, ortak yetenekler, hikâye |
 | İş Birliği | `#isbirligi` | Medya kiti rakamları, iş birliği türleri, iletişim formu |
 
 ## Dosyalar
