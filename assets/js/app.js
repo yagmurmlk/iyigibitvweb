@@ -22,6 +22,7 @@
     ["anasayfa", "Ana Sayfa"],
     ["videolar", "Videolar"],
     ["kesifler", "Keşfettiğimiz Yerler"],
+    ["blog", "Blog"],
     ["hakkimizda", "Hakkımızda"],
     ["isbirligi", "İş Birliği"],
   ];
@@ -216,6 +217,87 @@
     routeCleanup = () => { ro.disconnect(); removeEventListener("scroll", progress); };
   }
 
+  // ---- Blog ----
+  const POSTS = (window.IGTV_BLOG || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+  const postById = Object.fromEntries(POSTS.map((p) => [p.id, p]));
+  const readTime = (p) => Math.max(1, Math.round(p.body.join(" ").split(/\s+/).length / 180));
+  const postMeta = (p) => `${date(p.date)}, ${readTime(p)} dakikalık okuma`;
+  let blogCat = "all";
+  function postCard(p, { big = false } = {}) {
+    const v = byId[p.video];
+    return `<a class="post-card${big ? " big" : ""}" href="#blog-${p.id}">
+      <span class="thumb"><img loading="lazy" alt="" src="${src(v, big ? "big" : "card")}"${fb(v, big ? "big" : "card")}></span>
+      <span class="post-body">
+        <span class="post-cat">${esc(p.category)}</span>
+        <span class="post-title">${esc(p.title)}</span>
+        <span class="post-excerpt">${esc(p.excerpt)}</span>
+        <span class="post-meta">${postMeta(p)}</span>
+      </span>
+    </a>`;
+  }
+  function pageBlog() {
+    const cats = [...new Set(POSTS.map((p) => p.category))];
+    const list = POSTS.filter((p) => blogCat === "all" || p.category === blogCat);
+    const [first, ...rest] = list;
+    return `
+    <section class="wrap page-head">
+      <span class="note">yoldan yazılar</span>
+      <h1>Videoların arkasındaki hikâyeler</h1>
+      <p class="lead">Gittiğimiz yerlerin notları, yol hikâyeleri ve kısa rehberler. Her yazının içinde o günün videosu da var.</p>
+    </section>
+    <section class="wrap">
+      <div class="toolbar-row" role="group" aria-label="Yazı türü" style="margin-bottom:32px">
+        <button class="chip-btn" data-blogcat="all" aria-pressed="${blogCat === "all"}">Tümü <span>${POSTS.length}</span></button>
+        ${cats.map((c) => `<button class="chip-btn" data-blogcat="${esc(c)}" aria-pressed="${blogCat === c}">${esc(c)} <span>${POSTS.filter((p) => p.category === c).length}</span></button>`).join("")}
+      </div>
+      ${first ? postCard(first, { big: true }) : ""}
+      <div class="post-grid">${rest.map((p) => postCard(p)).join("")}</div>
+    </section>`;
+  }
+  function bindBlog() {
+    app.querySelectorAll("[data-blogcat]").forEach((b) => b.addEventListener("click", () => { blogCat = b.dataset.blogcat; render(); }));
+  }
+  function pagePost(id) {
+    const p = postById[id];
+    if (!p) return pageBlog();
+    const v = byId[p.video];
+    const place = placeOf(p.place);
+    const i = POSTS.indexOf(p), newer = POSTS[i - 1], older = POSTS[i + 1];
+    const body = p.body.map((t) => t.startsWith("## ") ? `<h2>${esc(t.slice(3))}</h2>` : `<p>${esc(t)}</p>`).join("");
+    return `
+    <article class="post">
+      <header class="wrap post-head">
+        <a class="back" href="#blog">Tüm yazılar</a>
+        <span class="note">${esc(p.category.toLocaleLowerCase("tr-TR"))}</span>
+        <h1>${esc(p.title)}</h1>
+        <p class="lead">${esc(p.excerpt)}</p>
+        <p class="post-meta">${postMeta(p)}${place ? `, ${esc(place.name)}, ${esc(place.countryName)}` : ""}</p>
+      </header>
+      <div class="wrap">
+        <button class="post-cover" data-play="${v.id}" aria-label="Videoyu oynat: ${esc(cleanTitle(v.title))}">
+          <img alt="" src="${src(v, "big")}"${fb(v, "big")}>
+          <span class="post-play">${I.play.replace("<svg", '<svg fill="currentColor"')}Videoyu izle, ${dur(v.sec)}</span>
+        </button>
+      </div>
+      <div class="wrap post-layout">
+        <div class="prose">${body}</div>
+        <aside class="post-notes" aria-label="Gezi notları">
+          <span class="note">notlar</span>
+          <dl>${p.notes.map(([k, t]) => `<div><dt>${esc(k)}</dt><dd>${esc(t)}</dd></div>`).join("")}</dl>
+          ${place ? `<a class="more" href="#kesifler">${esc(place.name)} haritada</a>` : ""}
+        </aside>
+      </div>
+      ${p.related.length ? `<section class="wrap section">
+        <div class="section-head"><div><span class="note">bu yazının videoları</span><h2>İzlemeye devam edin</h2></div></div>
+        <div class="grid">${p.related.filter((r) => byId[r]).map((r) => card(byId[r])).join("")}</div>
+      </section>` : ""}
+      <nav class="wrap post-nav" aria-label="Diğer yazılar">
+        ${older ? `<a href="#blog-${older.id}"><small>Önceki yazı</small><b>${esc(older.title)}</b></a>` : "<span></span>"}
+        ${newer ? `<a href="#blog-${newer.id}" class="next"><small>Sonraki yazı</small><b>${esc(newer.title)}</b></a>` : "<span></span>"}
+      </nav>
+    </article>`;
+  }
+
   // ---- Sayfalar ----
   const stopHead = (note, title, text) => `<div class="stop-head"><span class="stop-dot" aria-hidden="true"></span><span class="note">${note}</span><h2>${title}</h2>${text ? `<p class="lead">${text}</p>` : ""}</div>`;
 
@@ -289,6 +371,11 @@
       <section class="stop wrap">
         <div class="stop-row">${stopHead("yoldan kalanlar", "Bir dakikadan kısa")}<a class="more" href="#videolar" data-format="short">Tüm kısa videolar</a></div>
         <div class="strip">${topShorts.map((v) => card(v)).join("")}</div>
+      </section>
+
+      <section class="stop wrap">
+        <div class="stop-row">${stopHead("yoldan yazılar", "Blogdan", "Videoların arkasındaki notlar ve kısa rehberler.")}<a class="more" href="#blog">Tüm yazılar</a></div>
+        <div class="post-grid">${POSTS.slice(0, 3).map((p) => postCard(p)).join("")}</div>
       </section>
 
       <section class="stop wrap">
@@ -663,8 +750,8 @@
   dlg.addEventListener("close", () => (frame.innerHTML = ""));
 
   // ---- Yönlendirme ----
-  const PAGES = { anasayfa: pageHome, videolar: pageVideos, kesifler: pagePlaces, hakkimizda: pageAbout, isbirligi: pageCollab };
-  const BINDS = { anasayfa: bindHome, videolar: bindVideos, kesifler: bindMap, isbirligi: bindCollab };
+  const PAGES = { anasayfa: pageHome, videolar: pageVideos, kesifler: pagePlaces, hakkimizda: pageAbout, isbirligi: pageCollab, blog: pageBlog };
+  const BINDS = { anasayfa: bindHome, videolar: bindVideos, kesifler: bindMap, isbirligi: bindCollab, blog: bindBlog };
   const TITLES = Object.fromEntries(ROUTES);
   const navHtml = () => ROUTES.map(([k, l]) => `<a href="#${k}" data-route="${k}">${l}</a>`).join("");
   document.getElementById("nav").innerHTML = navHtml();
@@ -676,12 +763,13 @@
     let route = (location.hash || "#anasayfa").slice(1);
     const toCorner = route === "radyoloji";
     if (toCorner) route = "videolar";
-    const key = PAGES[route] ? route : "anasayfa";
+    const postId = route.startsWith("blog-") ? route.slice(5) : null;
+    const key = postId ? "blog" : PAGES[route] ? route : "anasayfa";
     if (routeCleanup) { routeCleanup(); routeCleanup = null; }
-    app.innerHTML = `<div class="page">${PAGES[key]()}</div>`;
-    (BINDS[key] || (() => {}))();
+    app.innerHTML = `<div class="page">${postId ? pagePost(postId) : PAGES[key]()}</div>`;
+    if (!postId) (BINDS[key] || (() => {}))();
     document.querySelectorAll("[data-route]").forEach((a) => (a.dataset.route === key ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
-    document.title = key === "anasayfa" ? "İyi Gibi TV" : `${TITLES[key]} | İyi Gibi TV`;
+    document.title = postId && postById[postId] ? `${postById[postId].title} | İyi Gibi TV` : key === "anasayfa" ? "İyi Gibi TV" : `${TITLES[key]} | İyi Gibi TV`;
     document.getElementById("nav").classList.remove("open");
     document.getElementById("menu-btn").setAttribute("aria-expanded", "false");
     if (toCorner) requestAnimationFrame(() => document.getElementById("radyoloji-kosesi")?.scrollIntoView());

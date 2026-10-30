@@ -7,7 +7,7 @@ R = Path(__file__).resolve().parent.parent
 html = (R / "index.html").read_text(encoding="utf-8")
 css = (R / "assets/css/site.css").read_text(encoding="utf-8")
 html = html.replace('<link rel="stylesheet" href="assets/css/site.css">', f"<style>{css}</style>")
-for js in ("assets/js/data.js", "assets/js/map.js", "assets/js/app.js"):
+for js in ("assets/js/data.js", "assets/js/map.js", "assets/js/blog.js", "assets/js/app.js"):
     html = html.replace(f'<script src="{js}"></script>', "<script>" + (R / js).read_text(encoding="utf-8") + "</script>")
 # Önizlemede kapaklar ve fotoğraflar yanında yayımlanan dosyalardan gelir
 if len(sys.argv) > 2:
