@@ -232,7 +232,7 @@
     <section class="hero wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1>Güzel değil belki, ama iyi gibi.</h1>
+          <h1>Gittiğimiz yerlerden getirdiğimiz hikâyeler.</h1>
           <p class="lead">Biz Hüseyin ve Melike. Bakü'nün pazarlarından Anadolu'nun köylerine kadar gittiğimiz her yeri birlikte keşfediyor, kameramızla size getiriyoruz.</p>
           <div class="hero-actions">
             <a class="btn btn-route" href="#videolar">${I.play.replace("<svg", '<svg fill="currentColor"')}Yolculuklara başla</a>
