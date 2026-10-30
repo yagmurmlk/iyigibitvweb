@@ -1,5 +1,7 @@
 # İyi Gibi TV — Web Sitesi
 
+Canlı site: https://yagmurmlk.github.io/iyigibitvweb/
+
 [@iyigibitv](https://www.youtube.com/@iyigibitv) YouTube kanalının tanıtım sitesi. Derleme gerektirmeyen statik bir site: GitHub Pages, Netlify ya da herhangi bir sunucuda çalışır.
 
 ## Sayfalar
