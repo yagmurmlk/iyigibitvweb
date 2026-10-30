@@ -137,7 +137,8 @@ def main():
             "videoCount": int(d["channel"]["stats"]["videoCount"]),
             "updated": "2026-10-30",
         },
-        "places": [{"id": p[0], "name": p[1], "country": p[2], "countryName": COUNTRY[p[2]], "coord": p[3]} for p in PLACES],
+        "places": [{"id": p[0], "name": p[1], "country": p[2], "countryName": COUNTRY[p[2]],
+                    "lat": float(p[3].split("°")[0]), "lon": float(p[3].split(" ")[1].split("°")[0])} for p in PLACES],
         "playlists": [{"id": p["id"], "title": p["title"], "description": p["description"], "videoIds": p["videoIds"]} for p in d["playlists"]],
         "videos": videos,
     }
