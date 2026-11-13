@@ -31,3 +31,17 @@ python3 -m http.server 8000
 ## Ayarlar
 - İletişim e-postası: `assets/js/app.js` içindeki `CONFIG.email`
 - Fotoğraflar: `assets/img/` (bkz. oradaki README). Şimdiki portreler video kapaklarından kırpılmış geçici görsellerdir.
+
+## Otomatik güncelleme
+`.github/workflows/site.yml` her gün 09:17'de (Türkiye saati) çalışır:
+1. `scripts/fetch_youtube.py` YouTube'dan kanal, video ve oynatma listesi verisini çeker (`data/youtube.json`).
+2. `scripts/build_data.py` sitenin veri dosyasını üretir (`assets/js/data.js`).
+3. Değişiklik varsa kaydedilir ve site yayına alınır.
+
+Dala her kod gönderildiğinde de site yeniden yayınlanır. Actions sekmesinden "Run workflow" ile elle de çalıştırılabilir.
+
+Kurulum (bir kez):
+- **Settings → Secrets and variables → Actions → New repository secret:** ad `YOUTUBE_API_KEY`, değer YouTube Data API anahtarı.
+- **Settings → Pages → Build and deployment → Source:** `GitHub Actions`.
+
+Yeni bir videonun yanlış konu ya da yere düştüğünü görürseniz kurallar `scripts/build_data.py` içindeki `PLACES`, `TOPICS` ve elle düzeltme listelerindedir.

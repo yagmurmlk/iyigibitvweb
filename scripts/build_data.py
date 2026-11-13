@@ -25,7 +25,7 @@ PLACES = [
      r"şaxta|narnumru|qələbə|azerbaijan|azerbaycan"),
     ("tiflis", "Tiflis", "GE", "41.72°K 44.79°D", r"tiflis|tbilisi|georgia|gürcistan"),
     ("ayvalik", "Ayvalık & Cunda", "TR", "39.32°K 26.69°D", r"ayvalık|cunda|karavan|tımarhane|macaron|boşnak"),
-    ("ankara", "Ankara & çevresi", "TR", "39.93°K 32.86°D", r"ankara|kızılcahamam|beypazarı|ayaş"),
+    ("ankara", "Ankara & çevresi", "TR", "39.93°K 32.86°D", r"ankara|kızılcahamam|beypazarı|ayaş|çubuk"),
     ("sakarya", "Sakarya", "TR", "40.78°K 30.40°D", r"sakarya|hendek"),
     ("duzce", "Düzce", "TR", "40.84°K 31.16°D", r"binef|düzce"),
     ("kayseri", "Kayseri → Antalya", "TR", "38.72°K 35.49°D", r"kayseri’de başladı|kayseri'de başladı"),
@@ -37,7 +37,7 @@ TOPICS = [
     ("radyoloji", r"radyoloji|radiology|\bmr\b|\bmri\b|emar|tomografi"),
     ("unutmadik", r"deprem|pazarcık|kahramanmaraş|hatay|antakya|unutmadık|kızılay"),
     ("mutfak", r"tarif|donut|waffle|pide|kaşar|peynir|yağlama|karpatka|cookie|kurabiye|çikolatadan|"
-               r"osmanlı mutfağı|kavundan|narnumru|macaron"),
+               r"osmanlı mutfağı|kavundan|nar ?n[uü]m?ru|macaron|turşu"),
 ]
 
 # Elle düzeltmeler (regex'in yanıldığı videolar).
@@ -139,7 +139,7 @@ def main():
             "subscribers": int(d["channel"]["stats"]["subscriberCount"]),
             "views": int(d["channel"]["stats"]["viewCount"]),
             "videoCount": int(d["channel"]["stats"]["videoCount"]),
-            "updated": "2026-10-30",
+            "updated": d.get("fetchedAt", "2026-10-30"),
         },
         "places": [{"id": p[0], "name": p[1], "country": p[2], "countryName": COUNTRY[p[2]],
                     "lat": float(p[3].split("°")[0]), "lon": float(p[3].split(" ")[1].split("°")[0])} for p in PLACES],
