@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-18",
+ "fetchedAt": "2026-11-19",
  "channel": {
   "id": "UCtGZKxtzMXxCq6mL9I-Qocg",
   "title": "İyi Gibi TV",
@@ -10,7 +10,7 @@
    "viewCount": "1251167",
    "subscriberCount": "6600",
    "hiddenSubscriberCount": false,
-   "videoCount": "151"
+   "videoCount": "152"
   },
   "thumbnail": "https://yt3.ggpht.com/rGBSgrTZn_y_FRk8nsk5yOHc3lEHH1hGYq6S9g-rX4MPY-mVfqkRbXglooAPNoc7FV74xGAp2g=s800-c-k-c0x00ffffff-no-rj"
  },
@@ -103,13 +103,48 @@
  ],
  "videos": [
   {
+   "id": "diwpH9qVN3w",
+   "title": "HGS VURGUNU! #hgs",
+   "publishedAt": "2026-11-18T20:59:35Z",
+   "durationSec": 128,
+   "isShort": true,
+   "views": 1727,
+   "likes": 67,
+   "comments": 7,
+   "tags": [
+    "HGS",
+    "HGS mağdurları",
+    "HGS vurgunu",
+    "ihlalli geçiş",
+    "otoyol cezası",
+    "HGS cezası",
+    "HGS borcu",
+    "otoyol geçiş ücreti",
+    "icra takibi",
+    "HGS otomatik ödeme",
+    "HGS bakiye sorgulama",
+    "6001 sayılı kanun",
+    "otoyol mağduriyeti",
+    "geçiş ihlali",
+    "tüketici hakları",
+    "Türkiye gündemi",
+    "son dakika",
+    "vatandaş mağduriyeti",
+    "otoyol işletmeleri",
+    "HGS sistemi"
+   ],
+   "description": "HGS VURGUNU! 30 TL’lik Otoyol Geçişi Nasıl Binlerce Liralık Borca Dönüşüyor?\n\nHGS hesabında para olduğu halde borç çıkarılan, geçiş ücretini zamanında göremeyen ve sonradan yüksek cezalarla karşılaşan vatandaşların şikâyetleri gündemde.\n\nOtomatik ödeme talimatları, ihlalli geçiş bildirimleri, dört kat ceza ve icra takipleri… HGS sisteminde neler yaşanıyor?\n\nSizin de başınıza benzer bir olay geldiyse yorumlarda paylaşın.",
+   "thumbnail": "https://i.ytimg.com/vi/diwpH9qVN3w/maxresdefault.jpg",
+   "captionTracks": []
+  },
+  {
    "id": "PNsdhHbBhQ8",
    "title": "İstanbul’un Semtleri Ankara’da Neresi Olurdu? 😳 #Shorts",
    "publishedAt": "2026-11-15T04:25:37Z",
    "durationSec": 93,
    "isShort": true,
-   "views": 3166,
-   "likes": 39,
+   "views": 3288,
+   "likes": 41,
    "comments": 5,
    "tags": [
     "ankara",
@@ -125,7 +160,7 @@
    "publishedAt": "2026-11-14T09:07:29Z",
    "durationSec": 96,
    "isShort": true,
-   "views": 870,
+   "views": 873,
    "likes": 7,
    "comments": 1,
    "tags": [
@@ -152,7 +187,7 @@
    "publishedAt": "2026-11-09T13:11:19Z",
    "durationSec": 891,
    "isShort": false,
-   "views": 354,
+   "views": 355,
    "likes": 20,
    "comments": 6,
    "tags": [
@@ -187,7 +222,7 @@
    "publishedAt": "2026-11-09T08:13:09Z",
    "durationSec": 51,
    "isShort": true,
-   "views": 1047,
+   "views": 1049,
    "likes": 8,
    "comments": 2,
    "tags": [],
@@ -201,7 +236,7 @@
    "publishedAt": "2026-11-07T11:55:54Z",
    "durationSec": 66,
    "isShort": true,
-   "views": 1520,
+   "views": 1522,
    "likes": 29,
    "comments": 4,
    "tags": [],
@@ -229,7 +264,7 @@
    "publishedAt": "2026-11-05T16:03:56Z",
    "durationSec": 88,
    "isShort": true,
-   "views": 5328,
+   "views": 5359,
    "likes": 160,
    "comments": 5,
    "tags": [],
@@ -243,7 +278,7 @@
    "publishedAt": "2026-11-03T14:34:18Z",
    "durationSec": 97,
    "isShort": true,
-   "views": 3849,
+   "views": 3856,
    "likes": 38,
    "comments": 4,
    "tags": [],
@@ -257,7 +292,7 @@
    "publishedAt": "2026-11-02T15:24:03Z",
    "durationSec": 44,
    "isShort": true,
-   "views": 1352,
+   "views": 1353,
    "likes": 12,
    "comments": 0,
    "tags": [],
@@ -304,7 +339,7 @@
    "publishedAt": "2026-10-28T13:01:58Z",
    "durationSec": 84,
    "isShort": true,
-   "views": 1388,
+   "views": 1391,
    "likes": 20,
    "comments": 1,
    "tags": [],
@@ -372,7 +407,7 @@
    "publishedAt": "2026-08-15T17:41:12Z",
    "durationSec": 1803,
    "isShort": false,
-   "views": 722,
+   "views": 724,
    "likes": 43,
    "comments": 6,
    "tags": [
@@ -416,7 +451,7 @@
    "publishedAt": "2026-07-23T11:41:41Z",
    "durationSec": 1834,
    "isShort": false,
-   "views": 1451,
+   "views": 1462,
    "likes": 41,
    "comments": 9,
    "tags": [
@@ -589,7 +624,7 @@
    "publishedAt": "2026-01-25T12:00:49Z",
    "durationSec": 1191,
    "isShort": false,
-   "views": 1284,
+   "views": 1286,
    "likes": 36,
    "comments": 15,
    "tags": [
@@ -653,7 +688,7 @@
    "publishedAt": "2025-06-12T13:09:51Z",
    "durationSec": 2626,
    "isShort": false,
-   "views": 16045,
+   "views": 16049,
    "likes": 498,
    "comments": 70,
    "tags": [
@@ -703,7 +738,7 @@
    "publishedAt": "2025-03-19T05:00:24Z",
    "durationSec": 2243,
    "isShort": false,
-   "views": 35276,
+   "views": 35284,
    "likes": 724,
    "comments": 200,
    "tags": [
@@ -798,7 +833,7 @@
    "publishedAt": "2025-01-03T04:45:00Z",
    "durationSec": 875,
    "isShort": false,
-   "views": 6230,
+   "views": 6231,
    "likes": 264,
    "comments": 49,
    "tags": [
@@ -901,7 +936,7 @@
    "publishedAt": "2024-09-04T20:31:58Z",
    "durationSec": 1174,
    "isShort": false,
-   "views": 3851,
+   "views": 3852,
    "likes": 270,
    "comments": 100,
    "tags": [
@@ -2136,7 +2171,7 @@
    "publishedAt": "2024-01-06T16:42:49Z",
    "durationSec": 1277,
    "isShort": false,
-   "views": 42057,
+   "views": 42062,
    "likes": 1284,
    "comments": 285,
    "tags": [
@@ -2272,7 +2307,7 @@
    "publishedAt": "2023-12-27T20:11:17Z",
    "durationSec": 1062,
    "isShort": false,
-   "views": 47628,
+   "views": 47630,
    "likes": 1453,
    "comments": 237,
    "tags": [
@@ -2411,7 +2446,7 @@
    "publishedAt": "2023-12-15T21:37:26Z",
    "durationSec": 1151,
    "isShort": false,
-   "views": 95794,
+   "views": 95795,
    "likes": 2467,
    "comments": 384,
    "tags": [
@@ -2461,7 +2496,7 @@
    "publishedAt": "2023-12-12T12:46:27Z",
    "durationSec": 743,
    "isShort": false,
-   "views": 41538,
+   "views": 41539,
    "likes": 1671,
    "comments": 147,
    "tags": [
@@ -2538,7 +2573,7 @@
    "publishedAt": "2023-12-09T20:21:32Z",
    "durationSec": 1140,
    "isShort": false,
-   "views": 234564,
+   "views": 234575,
    "likes": 4444,
    "comments": 863,
    "tags": [
@@ -3102,7 +3137,7 @@
    "publishedAt": "2023-03-16T03:30:58Z",
    "durationSec": 51,
    "isShort": true,
-   "views": 1523,
+   "views": 1524,
    "likes": 59,
    "comments": 2,
    "tags": [
@@ -3129,7 +3164,7 @@
    "publishedAt": "2023-03-07T07:46:45Z",
    "durationSec": 10,
    "isShort": true,
-   "views": 13056,
+   "views": 13062,
    "likes": 84,
    "comments": 1,
    "tags": [
@@ -3412,7 +3447,7 @@
    "publishedAt": "2023-01-09T09:24:25Z",
    "durationSec": 30,
    "isShort": true,
-   "views": 1991,
+   "views": 1994,
    "likes": 31,
    "comments": 6,
    "tags": [
@@ -3475,7 +3510,7 @@
    "publishedAt": "2023-01-08T17:09:47Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 58697,
+   "views": 58735,
    "likes": 333,
    "comments": 2,
    "tags": [
@@ -3635,7 +3670,7 @@
    "publishedAt": "2022-12-28T21:51:54Z",
    "durationSec": 432,
    "isShort": false,
-   "views": 3236,
+   "views": 3237,
    "likes": 34,
    "comments": 9,
    "tags": [
@@ -4218,7 +4253,7 @@
    "publishedAt": "2022-12-01T17:52:46Z",
    "durationSec": 13,
    "isShort": true,
-   "views": 6381,
+   "views": 6382,
    "likes": 81,
    "comments": 5,
    "tags": [
@@ -4314,7 +4349,7 @@
    "publishedAt": "2022-11-24T20:17:11Z",
    "durationSec": 183,
    "isShort": false,
-   "views": 4858,
+   "views": 4860,
    "likes": 54,
    "comments": 10,
    "tags": [
@@ -4465,7 +4500,7 @@
    "publishedAt": "2022-11-16T01:31:14Z",
    "durationSec": 55,
    "isShort": true,
-   "views": 18065,
+   "views": 18131,
    "likes": 116,
    "comments": 13,
    "tags": [
@@ -4496,7 +4531,7 @@
    "publishedAt": "2022-11-16T01:26:59Z",
    "durationSec": 33,
    "isShort": true,
-   "views": 24045,
+   "views": 24073,
    "likes": 156,
    "comments": 5,
    "tags": [
@@ -4659,7 +4694,7 @@
    "publishedAt": "2022-11-12T02:56:11Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 8439,
+   "views": 8453,
    "likes": 68,
    "comments": 3,
    "tags": [
@@ -4854,7 +4889,7 @@
    "publishedAt": "2022-11-11T23:58:21Z",
    "durationSec": 200,
    "isShort": false,
-   "views": 1095,
+   "views": 1096,
    "likes": 27,
    "comments": 2,
    "tags": [
@@ -4883,7 +4918,7 @@
    "publishedAt": "2022-02-05T20:58:10Z",
    "durationSec": 118,
    "isShort": true,
-   "views": 4674,
+   "views": 4679,
    "likes": 63,
    "comments": 22,
    "tags": [
@@ -4911,7 +4946,7 @@
    "publishedAt": "2018-08-12T14:21:20Z",
    "durationSec": 305,
    "isShort": false,
-   "views": 91737,
+   "views": 91745,
    "likes": 1406,
    "comments": 544,
    "tags": [],
