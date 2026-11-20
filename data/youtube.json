@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-19",
+ "fetchedAt": "2026-11-20",
  "channel": {
   "id": "UCtGZKxtzMXxCq6mL9I-Qocg",
   "title": "İyi Gibi TV",
@@ -7,10 +7,10 @@
   "description": "Güzel değil belki ama iyi gibi.\nBize instagram hesabımızdan ulaşabilirsiniz! @iyigibitv",
   "publishedAt": "2013-02-10T14:58:52Z",
   "stats": {
-   "viewCount": "1251167",
+   "viewCount": "1257624",
    "subscriberCount": "6600",
    "hiddenSubscriberCount": false,
-   "videoCount": "152"
+   "videoCount": "153"
   },
   "thumbnail": "https://yt3.ggpht.com/rGBSgrTZn_y_FRk8nsk5yOHc3lEHH1hGYq6S9g-rX4MPY-mVfqkRbXglooAPNoc7FV74xGAp2g=s800-c-k-c0x00ffffff-no-rj"
  },
@@ -103,14 +103,28 @@
  ],
  "videos": [
   {
+   "id": "L906SzJxn6s",
+   "title": "Türkiye'nin Şehirleri Birer İnsan Olsaydı Nasıl Olurdu? 🇹🇷",
+   "publishedAt": "2026-11-19T14:34:00Z",
+   "durationSec": 160,
+   "isShort": true,
+   "views": 3440,
+   "likes": 8,
+   "comments": 2,
+   "tags": [],
+   "description": "Türkiye’nin şehirleri birer insan olsaydı nasıl karakterleri olurdu? 🇹🇷\n\nİstanbul, İzmir, Adana, Trabzon… Her şehrin kendine has bir karakteri olduğunu düşünerek bu kez şehirleri insan gibi yorumladım.\n\nSizce hangi şehrin karakteri tam isabet olmuş? Yorumlarda buluşalım.\n\n#Shorts #Türkiye #Şehirler #TürkiyeŞehirleri #ŞehirKarakterleri",
+   "thumbnail": "https://i.ytimg.com/vi/L906SzJxn6s/maxresdefault.jpg",
+   "captionTracks": []
+  },
+  {
    "id": "diwpH9qVN3w",
    "title": "HGS VURGUNU! #hgs",
    "publishedAt": "2026-11-18T20:59:35Z",
    "durationSec": 128,
    "isShort": true,
-   "views": 1727,
-   "likes": 67,
-   "comments": 7,
+   "views": 2339,
+   "likes": 79,
+   "comments": 8,
    "tags": [
     "HGS",
     "HGS mağdurları",
@@ -143,7 +157,7 @@
    "publishedAt": "2026-11-15T04:25:37Z",
    "durationSec": 93,
    "isShort": true,
-   "views": 3288,
+   "views": 3332,
    "likes": 41,
    "comments": 5,
    "tags": [
@@ -160,7 +174,7 @@
    "publishedAt": "2026-11-14T09:07:29Z",
    "durationSec": 96,
    "isShort": true,
-   "views": 873,
+   "views": 876,
    "likes": 7,
    "comments": 1,
    "tags": [
@@ -187,7 +201,7 @@
    "publishedAt": "2026-11-09T13:11:19Z",
    "durationSec": 891,
    "isShort": false,
-   "views": 355,
+   "views": 358,
    "likes": 20,
    "comments": 6,
    "tags": [
@@ -236,7 +250,7 @@
    "publishedAt": "2026-11-07T11:55:54Z",
    "durationSec": 66,
    "isShort": true,
-   "views": 1522,
+   "views": 1524,
    "likes": 29,
    "comments": 4,
    "tags": [],
@@ -250,7 +264,7 @@
    "publishedAt": "2026-11-06T18:41:53Z",
    "durationSec": 69,
    "isShort": true,
-   "views": 1333,
+   "views": 1336,
    "likes": 15,
    "comments": 4,
    "tags": [],
@@ -264,7 +278,7 @@
    "publishedAt": "2026-11-05T16:03:56Z",
    "durationSec": 88,
    "isShort": true,
-   "views": 5359,
+   "views": 5397,
    "likes": 160,
    "comments": 5,
    "tags": [],
@@ -278,7 +292,7 @@
    "publishedAt": "2026-11-03T14:34:18Z",
    "durationSec": 97,
    "isShort": true,
-   "views": 3856,
+   "views": 3860,
    "likes": 38,
    "comments": 4,
    "tags": [],
@@ -292,7 +306,7 @@
    "publishedAt": "2026-11-02T15:24:03Z",
    "durationSec": 44,
    "isShort": true,
-   "views": 1353,
+   "views": 1354,
    "likes": 12,
    "comments": 0,
    "tags": [],
@@ -320,7 +334,7 @@
    "publishedAt": "2026-10-28T13:07:45Z",
    "durationSec": 34,
    "isShort": true,
-   "views": 5755,
+   "views": 5756,
    "likes": 41,
    "comments": 0,
    "tags": [],
@@ -339,7 +353,7 @@
    "publishedAt": "2026-10-28T13:01:58Z",
    "durationSec": 84,
    "isShort": true,
-   "views": 1391,
+   "views": 1397,
    "likes": 20,
    "comments": 1,
    "tags": [],
@@ -451,7 +465,7 @@
    "publishedAt": "2026-07-23T11:41:41Z",
    "durationSec": 1834,
    "isShort": false,
-   "views": 1462,
+   "views": 1474,
    "likes": 41,
    "comments": 9,
    "tags": [
@@ -514,7 +528,7 @@
    "publishedAt": "2026-06-22T03:12:19Z",
    "durationSec": 163,
    "isShort": true,
-   "views": 1048,
+   "views": 1049,
    "likes": 36,
    "comments": 0,
    "tags": [],
@@ -552,7 +566,7 @@
    "publishedAt": "2026-03-08T03:58:22Z",
    "durationSec": 74,
    "isShort": true,
-   "views": 2994,
+   "views": 2995,
    "likes": 100,
    "comments": 5,
    "tags": [
@@ -577,7 +591,7 @@
    "publishedAt": "2026-03-06T11:25:08Z",
    "durationSec": 162,
    "isShort": true,
-   "views": 2240,
+   "views": 2241,
    "likes": 19,
    "comments": 0,
    "tags": [
@@ -603,7 +617,7 @@
    "durationSec": 50,
    "isShort": true,
    "views": 6306,
-   "likes": 35,
+   "likes": 34,
    "comments": 3,
    "tags": [
     "müge anlı",
@@ -624,8 +638,8 @@
    "publishedAt": "2026-01-25T12:00:49Z",
    "durationSec": 1191,
    "isShort": false,
-   "views": 1286,
-   "likes": 36,
+   "views": 1293,
+   "likes": 37,
    "comments": 15,
    "tags": [
     "ankara vlog",
@@ -688,7 +702,7 @@
    "publishedAt": "2025-06-12T13:09:51Z",
    "durationSec": 2626,
    "isShort": false,
-   "views": 16049,
+   "views": 16050,
    "likes": 498,
    "comments": 70,
    "tags": [
@@ -738,7 +752,7 @@
    "publishedAt": "2025-03-19T05:00:24Z",
    "durationSec": 2243,
    "isShort": false,
-   "views": 35284,
+   "views": 35290,
    "likes": 724,
    "comments": 200,
    "tags": [
@@ -1285,7 +1299,7 @@
    "publishedAt": "2024-06-02T16:40:50Z",
    "durationSec": 20,
    "isShort": true,
-   "views": 1889,
+   "views": 1890,
    "likes": 94,
    "comments": 8,
    "tags": [
@@ -1892,7 +1906,7 @@
    "publishedAt": "2024-02-03T11:37:00Z",
    "durationSec": 728,
    "isShort": false,
-   "views": 1706,
+   "views": 1710,
    "likes": 36,
    "comments": 16,
    "tags": [
@@ -1982,7 +1996,7 @@
    "publishedAt": "2024-01-27T18:22:31Z",
    "durationSec": 1431,
    "isShort": false,
-   "views": 13266,
+   "views": 13267,
    "likes": 738,
    "comments": 131,
    "tags": [
@@ -2171,7 +2185,7 @@
    "publishedAt": "2024-01-06T16:42:49Z",
    "durationSec": 1277,
    "isShort": false,
-   "views": 42062,
+   "views": 42065,
    "likes": 1284,
    "comments": 285,
    "tags": [
@@ -2221,7 +2235,7 @@
    "publishedAt": "2024-01-05T19:14:45Z",
    "durationSec": 963,
    "isShort": false,
-   "views": 7906,
+   "views": 7908,
    "likes": 446,
    "comments": 82,
    "tags": [
@@ -2307,7 +2321,7 @@
    "publishedAt": "2023-12-27T20:11:17Z",
    "durationSec": 1062,
    "isShort": false,
-   "views": 47630,
+   "views": 47633,
    "likes": 1453,
    "comments": 237,
    "tags": [
@@ -2446,7 +2460,7 @@
    "publishedAt": "2023-12-15T21:37:26Z",
    "durationSec": 1151,
    "isShort": false,
-   "views": 95795,
+   "views": 95798,
    "likes": 2467,
    "comments": 384,
    "tags": [
@@ -2496,7 +2510,7 @@
    "publishedAt": "2023-12-12T12:46:27Z",
    "durationSec": 743,
    "isShort": false,
-   "views": 41539,
+   "views": 41540,
    "likes": 1671,
    "comments": 147,
    "tags": [
@@ -2573,7 +2587,7 @@
    "publishedAt": "2023-12-09T20:21:32Z",
    "durationSec": 1140,
    "isShort": false,
-   "views": 234575,
+   "views": 234577,
    "likes": 4444,
    "comments": 863,
    "tags": [
@@ -3164,7 +3178,7 @@
    "publishedAt": "2023-03-07T07:46:45Z",
    "durationSec": 10,
    "isShort": true,
-   "views": 13062,
+   "views": 13063,
    "likes": 84,
    "comments": 1,
    "tags": [
@@ -3447,7 +3461,7 @@
    "publishedAt": "2023-01-09T09:24:25Z",
    "durationSec": 30,
    "isShort": true,
-   "views": 1994,
+   "views": 1996,
    "likes": 31,
    "comments": 6,
    "tags": [
@@ -3510,7 +3524,7 @@
    "publishedAt": "2023-01-08T17:09:47Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 58735,
+   "views": 58799,
    "likes": 333,
    "comments": 2,
    "tags": [
@@ -3567,7 +3581,7 @@
    "publishedAt": "2023-01-03T21:56:16Z",
    "durationSec": 309,
    "isShort": false,
-   "views": 1662,
+   "views": 1663,
    "likes": 32,
    "comments": 2,
    "tags": [
@@ -3833,7 +3847,7 @@
    "publishedAt": "2022-12-23T12:47:11Z",
    "durationSec": 399,
    "isShort": false,
-   "views": 1274,
+   "views": 1275,
    "likes": 26,
    "comments": 7,
    "tags": [
@@ -3868,7 +3882,7 @@
    "publishedAt": "2022-12-13T20:15:10Z",
    "durationSec": 30,
    "isShort": true,
-   "views": 208,
+   "views": 209,
    "likes": 26,
    "comments": 0,
    "tags": [],
@@ -4253,7 +4267,7 @@
    "publishedAt": "2022-12-01T17:52:46Z",
    "durationSec": 13,
    "isShort": true,
-   "views": 6382,
+   "views": 6383,
    "likes": 81,
    "comments": 5,
    "tags": [
@@ -4349,7 +4363,7 @@
    "publishedAt": "2022-11-24T20:17:11Z",
    "durationSec": 183,
    "isShort": false,
-   "views": 4860,
+   "views": 4864,
    "likes": 54,
    "comments": 10,
    "tags": [
@@ -4500,7 +4514,7 @@
    "publishedAt": "2022-11-16T01:31:14Z",
    "durationSec": 55,
    "isShort": true,
-   "views": 18131,
+   "views": 18175,
    "likes": 116,
    "comments": 13,
    "tags": [
@@ -4531,7 +4545,7 @@
    "publishedAt": "2022-11-16T01:26:59Z",
    "durationSec": 33,
    "isShort": true,
-   "views": 24073,
+   "views": 24084,
    "likes": 156,
    "comments": 5,
    "tags": [
@@ -4694,7 +4708,7 @@
    "publishedAt": "2022-11-12T02:56:11Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 8453,
+   "views": 8462,
    "likes": 68,
    "comments": 3,
    "tags": [
@@ -4946,9 +4960,9 @@
    "publishedAt": "2018-08-12T14:21:20Z",
    "durationSec": 305,
    "isShort": false,
-   "views": 91745,
+   "views": 91747,
    "likes": 1406,
-   "comments": 544,
+   "comments": 541,
    "tags": [],
    "description": "sosyal medya üzerinden bize gelen soruları cevaplamaya çalıştık.\nGizem Özkan\nMelike Yağmur \nFatmagül Arkan",
    "thumbnail": "https://i.ytimg.com/vi/j5cqbBKCzJg/maxresdefault.jpg",
