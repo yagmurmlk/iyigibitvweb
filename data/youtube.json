@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-22",
+ "fetchedAt": "2026-11-23",
  "channel": {
   "id": "UCtGZKxtzMXxCq6mL9I-Qocg",
   "title": "İyi Gibi TV",
@@ -7,10 +7,10 @@
   "description": "Güzel değil belki ama iyi gibi.\nBize instagram hesabımızdan ulaşabilirsiniz! @iyigibitv",
   "publishedAt": "2013-02-10T14:58:52Z",
   "stats": {
-   "viewCount": "1258308",
+   "viewCount": "1258954",
    "subscriberCount": "6600",
    "hiddenSubscriberCount": false,
-   "videoCount": "153"
+   "videoCount": "154"
   },
   "thumbnail": "https://yt3.ggpht.com/rGBSgrTZn_y_FRk8nsk5yOHc3lEHH1hGYq6S9g-rX4MPY-mVfqkRbXglooAPNoc7FV74xGAp2g=s800-c-k-c0x00ffffff-no-rj"
  },
@@ -103,12 +103,43 @@
  ],
  "videos": [
   {
+   "id": "Ak2eZwa3Hrs",
+   "title": "TÜRK TURİST GİTMEZSE KARADAĞ NE KAYBEDER? 🇲🇪",
+   "publishedAt": "2026-11-22T19:18:03Z",
+   "durationSec": 86,
+   "isShort": true,
+   "views": 1402,
+   "likes": 12,
+   "comments": 1,
+   "tags": [
+    "Karadağ",
+    "Karadağ vize",
+    "Montenegro",
+    "Karadağ Türk turistler",
+    "Türk vatandaşlarına vize",
+    "Karadağ turizm",
+    "Balkanlar",
+    "Balkan turu",
+    "turizm ekonomisi",
+    "vize kararı",
+    "Türk turistler",
+    "turizm sektörü",
+    "Montenegro tourism",
+    "Turkey Montenegro",
+    "travel news",
+    "YouTube Shorts"
+   ],
+   "description": "Karadağ Türk turistleri kaybetmeyi göze mi aldı? 🇲🇪\n\nTürk vatandaşlarına getirilen vize uygulaması sadece seyahatleri mi etkileyecek, yoksa Karadağ’ın turizm ekonomisinde de ciddi sonuçlar mı doğuracak?\n\nÇünkü turist sadece otelde konaklayan bir müşteri değildir. Restoranından taksisine, tekne turundan küçük esnafına kadar koca bir ekonomi turistten beslenir.\n\nPeki Türk turistler rotasını değiştirirse Karadağ ne kaybeder?\n\nSizce bu kararın bedelini kim ödeyecek? Yorumlarda buluşalım.\n\n#Karadağ #Montenegro #Turizm #Vize #YouTubeShorts",
+   "thumbnail": "https://i.ytimg.com/vi/Ak2eZwa3Hrs/maxresdefault.jpg",
+   "captionTracks": []
+  },
+  {
    "id": "L906SzJxn6s",
    "title": "Türkiye'nin Şehirleri Birer İnsan Olsaydı Nasıl Olurdu? 🇹🇷",
    "publishedAt": "2026-11-19T14:34:00Z",
    "durationSec": 160,
    "isShort": true,
-   "views": 3477,
+   "views": 3480,
    "likes": 10,
    "comments": 3,
    "tags": [],
@@ -122,8 +153,8 @@
    "publishedAt": "2026-11-18T20:59:35Z",
    "durationSec": 128,
    "isShort": true,
-   "views": 2647,
-   "likes": 86,
+   "views": 2793,
+   "likes": 88,
    "comments": 9,
    "tags": [
     "HGS",
@@ -157,7 +188,7 @@
    "publishedAt": "2026-11-15T04:25:37Z",
    "durationSec": 93,
    "isShort": true,
-   "views": 3403,
+   "views": 3413,
    "likes": 43,
    "comments": 5,
    "tags": [
@@ -201,7 +232,7 @@
    "publishedAt": "2026-11-09T13:11:19Z",
    "durationSec": 891,
    "isShort": false,
-   "views": 377,
+   "views": 380,
    "likes": 20,
    "comments": 6,
    "tags": [
@@ -250,7 +281,7 @@
    "publishedAt": "2026-11-07T11:55:54Z",
    "durationSec": 66,
    "isShort": true,
-   "views": 1529,
+   "views": 1537,
    "likes": 30,
    "comments": 4,
    "tags": [],
@@ -278,7 +309,7 @@
    "publishedAt": "2026-11-05T16:03:56Z",
    "durationSec": 88,
    "isShort": true,
-   "views": 5459,
+   "views": 5482,
    "likes": 161,
    "comments": 5,
    "tags": [],
@@ -292,7 +323,7 @@
    "publishedAt": "2026-11-03T14:34:18Z",
    "durationSec": 97,
    "isShort": true,
-   "views": 3864,
+   "views": 3865,
    "likes": 38,
    "comments": 4,
    "tags": [],
@@ -306,7 +337,7 @@
    "publishedAt": "2026-11-02T15:24:03Z",
    "durationSec": 44,
    "isShort": true,
-   "views": 1357,
+   "views": 1358,
    "likes": 12,
    "comments": 0,
    "tags": [],
@@ -334,7 +365,7 @@
    "publishedAt": "2026-10-28T13:07:45Z",
    "durationSec": 34,
    "isShort": true,
-   "views": 5760,
+   "views": 5761,
    "likes": 41,
    "comments": 0,
    "tags": [],
@@ -353,7 +384,7 @@
    "publishedAt": "2026-10-28T13:01:58Z",
    "durationSec": 84,
    "isShort": true,
-   "views": 1401,
+   "views": 1402,
    "likes": 20,
    "comments": 1,
    "tags": [],
@@ -465,7 +496,7 @@
    "publishedAt": "2026-07-23T11:41:41Z",
    "durationSec": 1834,
    "isShort": false,
-   "views": 1501,
+   "views": 1508,
    "likes": 41,
    "comments": 9,
    "tags": [
@@ -638,7 +669,7 @@
    "publishedAt": "2026-01-25T12:00:49Z",
    "durationSec": 1191,
    "isShort": false,
-   "views": 1298,
+   "views": 1300,
    "likes": 37,
    "comments": 15,
    "tags": [
@@ -702,7 +733,7 @@
    "publishedAt": "2025-06-12T13:09:51Z",
    "durationSec": 2626,
    "isShort": false,
-   "views": 16053,
+   "views": 16056,
    "likes": 498,
    "comments": 70,
    "tags": [
@@ -752,7 +783,7 @@
    "publishedAt": "2025-03-19T05:00:24Z",
    "durationSec": 2243,
    "isShort": false,
-   "views": 35296,
+   "views": 35300,
    "likes": 724,
    "comments": 200,
    "tags": [
@@ -799,7 +830,7 @@
    "publishedAt": "2025-03-09T19:48:16Z",
    "durationSec": 1610,
    "isShort": false,
-   "views": 1527,
+   "views": 1528,
    "likes": 86,
    "comments": 35,
    "tags": [
@@ -847,7 +878,7 @@
    "publishedAt": "2025-01-03T04:45:00Z",
    "durationSec": 875,
    "isShort": false,
-   "views": 6232,
+   "views": 6236,
    "likes": 264,
    "comments": 49,
    "tags": [
@@ -894,7 +925,7 @@
    "publishedAt": "2024-10-01T18:42:31Z",
    "durationSec": 2985,
    "isShort": false,
-   "views": 2497,
+   "views": 2499,
    "likes": 154,
    "comments": 40,
    "tags": [
@@ -2185,7 +2216,7 @@
    "publishedAt": "2024-01-06T16:42:49Z",
    "durationSec": 1277,
    "isShort": false,
-   "views": 42075,
+   "views": 42082,
    "likes": 1284,
    "comments": 285,
    "tags": [
@@ -2321,7 +2352,7 @@
    "publishedAt": "2023-12-27T20:11:17Z",
    "durationSec": 1062,
    "isShort": false,
-   "views": 47635,
+   "views": 47638,
    "likes": 1454,
    "comments": 237,
    "tags": [
@@ -2460,7 +2491,7 @@
    "publishedAt": "2023-12-15T21:37:26Z",
    "durationSec": 1151,
    "isShort": false,
-   "views": 95805,
+   "views": 95804,
    "likes": 2467,
    "comments": 384,
    "tags": [
@@ -2510,7 +2541,7 @@
    "publishedAt": "2023-12-12T12:46:27Z",
    "durationSec": 743,
    "isShort": false,
-   "views": 41540,
+   "views": 41541,
    "likes": 1671,
    "comments": 147,
    "tags": [
@@ -2587,9 +2618,9 @@
    "publishedAt": "2023-12-09T20:21:32Z",
    "durationSec": 1140,
    "isShort": false,
-   "views": 234578,
-   "likes": 4444,
-   "comments": 863,
+   "views": 234582,
+   "likes": 4445,
+   "comments": 864,
    "tags": [
     "Azerbaycan Hayatı",
     "Azerbaycan Gezisi",
@@ -2633,7 +2664,7 @@
    "publishedAt": "2023-12-03T15:48:33Z",
    "durationSec": 506,
    "isShort": false,
-   "views": 47137,
+   "views": 47140,
    "likes": 2213,
    "comments": 154,
    "tags": [
@@ -2709,7 +2740,7 @@
    "publishedAt": "2023-11-28T16:53:44Z",
    "durationSec": 796,
    "isShort": false,
-   "views": 6539,
+   "views": 6542,
    "likes": 348,
    "comments": 24,
    "tags": [
@@ -3132,7 +3163,7 @@
    "publishedAt": "2023-04-29T17:34:44Z",
    "durationSec": 38,
    "isShort": true,
-   "views": 2864,
+   "views": 2866,
    "likes": 66,
    "comments": 4,
    "tags": [],
@@ -3178,7 +3209,7 @@
    "publishedAt": "2023-03-07T07:46:45Z",
    "durationSec": 10,
    "isShort": true,
-   "views": 13068,
+   "views": 13078,
    "likes": 84,
    "comments": 1,
    "tags": [
@@ -3195,7 +3226,7 @@
    "publishedAt": "2023-03-03T21:50:02Z",
    "durationSec": 748,
    "isShort": false,
-   "views": 1146,
+   "views": 1147,
    "likes": 60,
    "comments": 4,
    "tags": [
@@ -3327,7 +3358,7 @@
    "publishedAt": "2023-01-19T08:23:25Z",
    "durationSec": 18,
    "isShort": true,
-   "views": 1024,
+   "views": 1026,
    "likes": 36,
    "comments": 2,
    "tags": [
@@ -3461,7 +3492,7 @@
    "publishedAt": "2023-01-09T09:24:25Z",
    "durationSec": 30,
    "isShort": true,
-   "views": 2003,
+   "views": 2004,
    "likes": 31,
    "comments": 6,
    "tags": [
@@ -3524,7 +3555,7 @@
    "publishedAt": "2023-01-08T17:09:47Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 58839,
+   "views": 58879,
    "likes": 333,
    "comments": 2,
    "tags": [
@@ -3581,7 +3612,7 @@
    "publishedAt": "2023-01-03T21:56:16Z",
    "durationSec": 309,
    "isShort": false,
-   "views": 1663,
+   "views": 1664,
    "likes": 32,
    "comments": 2,
    "tags": [
@@ -3847,7 +3878,7 @@
    "publishedAt": "2022-12-23T12:47:11Z",
    "durationSec": 399,
    "isShort": false,
-   "views": 1275,
+   "views": 1276,
    "likes": 26,
    "comments": 7,
    "tags": [
@@ -4267,7 +4298,7 @@
    "publishedAt": "2022-12-01T17:52:46Z",
    "durationSec": 13,
    "isShort": true,
-   "views": 6396,
+   "views": 6399,
    "likes": 81,
    "comments": 5,
    "tags": [
@@ -4363,7 +4394,7 @@
    "publishedAt": "2022-11-24T20:17:11Z",
    "durationSec": 183,
    "isShort": false,
-   "views": 4867,
+   "views": 4868,
    "likes": 54,
    "comments": 10,
    "tags": [
@@ -4514,7 +4545,7 @@
    "publishedAt": "2022-11-16T01:31:14Z",
    "durationSec": 55,
    "isShort": true,
-   "views": 18272,
+   "views": 18315,
    "likes": 116,
    "comments": 13,
    "tags": [
@@ -4545,7 +4576,7 @@
    "publishedAt": "2022-11-16T01:26:59Z",
    "durationSec": 33,
    "isShort": true,
-   "views": 24139,
+   "views": 24153,
    "likes": 156,
    "comments": 5,
    "tags": [
@@ -4708,7 +4739,7 @@
    "publishedAt": "2022-11-12T02:56:11Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 8480,
+   "views": 8499,
    "likes": 68,
    "comments": 3,
    "tags": [
@@ -4766,7 +4797,7 @@
    "publishedAt": "2022-11-12T01:56:53Z",
    "durationSec": 61,
    "isShort": true,
-   "views": 28741,
+   "views": 28744,
    "likes": 141,
    "comments": 7,
    "tags": [
@@ -4932,7 +4963,7 @@
    "publishedAt": "2022-02-05T20:58:10Z",
    "durationSec": 118,
    "isShort": true,
-   "views": 4681,
+   "views": 4685,
    "likes": 64,
    "comments": 22,
    "tags": [
@@ -4960,7 +4991,7 @@
    "publishedAt": "2018-08-12T14:21:20Z",
    "durationSec": 305,
    "isShort": false,
-   "views": 91755,
+   "views": 91756,
    "likes": 1405,
    "comments": 541,
    "tags": [],
