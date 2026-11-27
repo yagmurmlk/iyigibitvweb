@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-11-26",
+ "fetchedAt": "2026-11-27",
  "channel": {
   "id": "UCtGZKxtzMXxCq6mL9I-Qocg",
   "title": "İyi Gibi TV",
@@ -7,7 +7,7 @@
   "description": "Güzel değil belki ama iyi gibi.\nBize instagram hesabımızdan ulaşabilirsiniz! @iyigibitv",
   "publishedAt": "2013-02-10T14:58:52Z",
   "stats": {
-   "viewCount": "1262205",
+   "viewCount": "1262856",
    "subscriberCount": "6600",
    "hiddenSubscriberCount": false,
    "videoCount": "155"
@@ -108,7 +108,7 @@
    "publishedAt": "2026-11-25T17:57:44Z",
    "durationSec": 109,
    "isShort": true,
-   "views": 1366,
+   "views": 1441,
    "likes": 10,
    "comments": 0,
    "tags": [
@@ -140,7 +140,7 @@
    "publishedAt": "2026-11-22T19:18:03Z",
    "durationSec": 86,
    "isShort": true,
-   "views": 1421,
+   "views": 1424,
    "likes": 13,
    "comments": 1,
    "tags": [
@@ -171,7 +171,7 @@
    "publishedAt": "2026-11-19T14:34:00Z",
    "durationSec": 160,
    "isShort": true,
-   "views": 3498,
+   "views": 3503,
    "likes": 10,
    "comments": 3,
    "tags": [],
@@ -185,7 +185,7 @@
    "publishedAt": "2026-11-18T20:59:35Z",
    "durationSec": 128,
    "isShort": true,
-   "views": 2911,
+   "views": 2934,
    "likes": 90,
    "comments": 9,
    "tags": [
@@ -220,7 +220,7 @@
    "publishedAt": "2026-11-15T04:25:37Z",
    "durationSec": 93,
    "isShort": true,
-   "views": 3426,
+   "views": 3428,
    "likes": 43,
    "comments": 5,
    "tags": [
@@ -264,7 +264,7 @@
    "publishedAt": "2026-11-09T13:11:19Z",
    "durationSec": 891,
    "isShort": false,
-   "views": 386,
+   "views": 390,
    "likes": 20,
    "comments": 6,
    "tags": [
@@ -313,7 +313,7 @@
    "publishedAt": "2026-11-07T11:55:54Z",
    "durationSec": 66,
    "isShort": true,
-   "views": 1547,
+   "views": 1549,
    "likes": 31,
    "comments": 4,
    "tags": [],
@@ -341,7 +341,7 @@
    "publishedAt": "2026-11-05T16:03:56Z",
    "durationSec": 88,
    "isShort": true,
-   "views": 5566,
+   "views": 5579,
    "likes": 162,
    "comments": 5,
    "tags": [],
@@ -355,7 +355,7 @@
    "publishedAt": "2026-11-03T14:34:18Z",
    "durationSec": 97,
    "isShort": true,
-   "views": 3878,
+   "views": 3881,
    "likes": 38,
    "comments": 5,
    "tags": [],
@@ -369,7 +369,7 @@
    "publishedAt": "2026-11-02T15:24:03Z",
    "durationSec": 44,
    "isShort": true,
-   "views": 1358,
+   "views": 1359,
    "likes": 12,
    "comments": 0,
    "tags": [],
@@ -528,7 +528,7 @@
    "publishedAt": "2026-07-23T11:41:41Z",
    "durationSec": 1834,
    "isShort": false,
-   "views": 1535,
+   "views": 1542,
    "likes": 41,
    "comments": 9,
    "tags": [
@@ -610,7 +610,7 @@
    "publishedAt": "2026-06-18T10:25:49Z",
    "durationSec": 125,
    "isShort": true,
-   "views": 2490,
+   "views": 2491,
    "likes": 65,
    "comments": 2,
    "tags": [],
@@ -629,7 +629,7 @@
    "publishedAt": "2026-03-08T03:58:22Z",
    "durationSec": 74,
    "isShort": true,
-   "views": 2999,
+   "views": 3001,
    "likes": 100,
    "comments": 5,
    "tags": [
@@ -701,7 +701,7 @@
    "publishedAt": "2026-01-25T12:00:49Z",
    "durationSec": 1191,
    "isShort": false,
-   "views": 1312,
+   "views": 1313,
    "likes": 37,
    "comments": 15,
    "tags": [
@@ -765,7 +765,7 @@
    "publishedAt": "2025-06-12T13:09:51Z",
    "durationSec": 2626,
    "isShort": false,
-   "views": 16061,
+   "views": 16064,
    "likes": 498,
    "comments": 70,
    "tags": [
@@ -815,7 +815,7 @@
    "publishedAt": "2025-03-19T05:00:24Z",
    "durationSec": 2243,
    "isShort": false,
-   "views": 35314,
+   "views": 35315,
    "likes": 724,
    "comments": 200,
    "tags": [
@@ -1013,7 +1013,7 @@
    "publishedAt": "2024-09-04T20:31:58Z",
    "durationSec": 1174,
    "isShort": false,
-   "views": 3859,
+   "views": 3861,
    "likes": 270,
    "comments": 100,
    "tags": [
@@ -2248,7 +2248,7 @@
    "publishedAt": "2024-01-06T16:42:49Z",
    "durationSec": 1277,
    "isShort": false,
-   "views": 42095,
+   "views": 42096,
    "likes": 1284,
    "comments": 285,
    "tags": [
@@ -2298,7 +2298,7 @@
    "publishedAt": "2024-01-05T19:14:45Z",
    "durationSec": 963,
    "isShort": false,
-   "views": 7907,
+   "views": 7908,
    "likes": 446,
    "comments": 82,
    "tags": [
@@ -2384,7 +2384,7 @@
    "publishedAt": "2023-12-27T20:11:17Z",
    "durationSec": 1062,
    "isShort": false,
-   "views": 47653,
+   "views": 47658,
    "likes": 1454,
    "comments": 237,
    "tags": [
@@ -2573,7 +2573,7 @@
    "publishedAt": "2023-12-12T12:46:27Z",
    "durationSec": 743,
    "isShort": false,
-   "views": 41549,
+   "views": 41551,
    "likes": 1671,
    "comments": 147,
    "tags": [
@@ -2650,7 +2650,7 @@
    "publishedAt": "2023-12-09T20:21:32Z",
    "durationSec": 1140,
    "isShort": false,
-   "views": 234590,
+   "views": 234591,
    "likes": 4445,
    "comments": 864,
    "tags": [
@@ -2858,7 +2858,7 @@
    "publishedAt": "2023-10-24T06:48:43Z",
    "durationSec": 1238,
    "isShort": false,
-   "views": 32092,
+   "views": 32096,
    "likes": 1284,
    "comments": 245,
    "tags": [
@@ -3241,7 +3241,7 @@
    "publishedAt": "2023-03-07T07:46:45Z",
    "durationSec": 10,
    "isShort": true,
-   "views": 13086,
+   "views": 13094,
    "likes": 84,
    "comments": 1,
    "tags": [
@@ -3524,7 +3524,7 @@
    "publishedAt": "2023-01-09T09:24:25Z",
    "durationSec": 30,
    "isShort": true,
-   "views": 2014,
+   "views": 2015,
    "likes": 31,
    "comments": 6,
    "tags": [
@@ -3587,7 +3587,7 @@
    "publishedAt": "2023-01-08T17:09:47Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 58983,
+   "views": 59004,
    "likes": 333,
    "comments": 2,
    "tags": [
@@ -4203,7 +4203,7 @@
    "publishedAt": "2022-12-04T10:38:07Z",
    "durationSec": 25,
    "isShort": true,
-   "views": 849,
+   "views": 850,
    "likes": 20,
    "comments": 0,
    "tags": [
@@ -4302,7 +4302,7 @@
    "publishedAt": "2022-12-02T18:56:45Z",
    "durationSec": 15,
    "isShort": true,
-   "views": 3955,
+   "views": 3959,
    "likes": 50,
    "comments": 1,
    "tags": [
@@ -4407,7 +4407,7 @@
    "publishedAt": "2022-11-24T20:19:26Z",
    "durationSec": 25,
    "isShort": true,
-   "views": 2177,
+   "views": 2178,
    "likes": 33,
    "comments": 2,
    "tags": [],
@@ -4426,7 +4426,7 @@
    "publishedAt": "2022-11-24T20:17:11Z",
    "durationSec": 183,
    "isShort": false,
-   "views": 4872,
+   "views": 4873,
    "likes": 54,
    "comments": 10,
    "tags": [
@@ -4577,7 +4577,7 @@
    "publishedAt": "2022-11-16T01:31:14Z",
    "durationSec": 55,
    "isShort": true,
-   "views": 18444,
+   "views": 18501,
    "likes": 116,
    "comments": 13,
    "tags": [
@@ -4608,7 +4608,7 @@
    "publishedAt": "2022-11-16T01:26:59Z",
    "durationSec": 33,
    "isShort": true,
-   "views": 24218,
+   "views": 24251,
    "likes": 157,
    "comments": 5,
    "tags": [
@@ -4643,7 +4643,7 @@
    "publishedAt": "2022-11-14T23:04:16Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 1790,
+   "views": 1791,
    "likes": 22,
    "comments": 3,
    "tags": [
@@ -4771,7 +4771,7 @@
    "publishedAt": "2022-11-12T02:56:11Z",
    "durationSec": 16,
    "isShort": true,
-   "views": 8521,
+   "views": 8536,
    "likes": 68,
    "comments": 3,
    "tags": [
@@ -4995,7 +4995,7 @@
    "publishedAt": "2022-02-05T20:58:10Z",
    "durationSec": 118,
    "isShort": true,
-   "views": 4689,
+   "views": 4691,
    "likes": 64,
    "comments": 22,
    "tags": [
@@ -5023,7 +5023,7 @@
    "publishedAt": "2018-08-12T14:21:20Z",
    "durationSec": 305,
    "isShort": false,
-   "views": 91762,
+   "views": 91763,
    "likes": 1405,
    "comments": 541,
    "tags": [],
